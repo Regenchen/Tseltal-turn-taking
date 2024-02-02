@@ -219,6 +219,7 @@ Vocal maturity annotations were completed manually by classifying each vocalizat
 
 All analyses and plots were conducted in RStudio [@rstudio] using the tidyverse [@R-tidyverse] and lme4 [@R-lme4] packages. A reproducible manuscript in which these analyses can be inspected on the basis of anonymized data are publicly available at the following repository: https://github.com/Regenchen/Tseltal-turn-taking/tree/145847cef20ab3f79242c52459eaf57fa5b4db71/data.
 
+
 ## Tseltal children’s vocal development
 
 We first verified whether the vocal maturity data in our new corpus align with expectations based on the literature at large, as well as prior work on vocal maturity in this community [@casillas_early_2020]. Overall, we found that the `r total_children` children produced, on average, `r round(utts_per_min_CHI$mean, 2)` vocalizations/minute (median=`r round(utts_per_min_CHI$median, 2)`, range=`r round(utts_per_min_CHI$min, 2)`--`r round(utts_per_min_CHI$max, 2)`). As shown in Figure 1, children begin by exclusively producing non-canonical and non-lexical vocalizations. Then, between 0;6 and 1;0, there is a decline in the use of non-canonical babble and an increase in the use of canonical babble. Recognizable words are observed as early as 0;6, picking up speed just before 1;0 and continuing to increase across the rest of the observed age range [^@]. This trajectory aligns with previous research on Tseltal children’s language development and is also quite similar to what we know about US children.
@@ -265,7 +266,6 @@ vcm_curve <- allchi %>%
 vcm_curve
 
 ```
-
 
 
 ## Overall target child-directed input
@@ -339,8 +339,6 @@ mod_loop_lex_alt <- glmer(lex ~ age_scaled * lastresp + lastlex +
 
 
 ```
-
-
 
 ## Children’s vocal production following adults’ responses
 
@@ -522,6 +520,7 @@ loop_mod_plot
 
 ```
 
+
 # Discussion
 
 The present study examined evidence for a social feedback loop in the vocal learning of Tseltal-acquiring infants. Social feedback loops provide a moment-to-moment mechanism for the longer-term influence of social interactions on linguistic and communicative development. Prior work on these feedback loops for vocal learning highlights canonical (speech-like) babble as an inflection point in the development of these loops—canonical babble elicits adult responses that encourage further canonical babble. However, past work on these loops for vocal learning has come almost exclusively from urban and suburban US English-speaking populations, in which these interactive accommodations by adults can be understood as US caregivers’ intentional, belief-driven efforts to engage children in conversations and facilitate their communicative and linguistic skills. To better understand how social feedback loops function in different cultural contexts, the present study examined vocal interaction between adults and children under 2;0 in rural Tseltal Mayan families, where ethnographic evidence led us to predict that feedback loops in vocal behavior would be driven by and elicit recognizable lexical utterances, more so than (non-lexical) canonical babble.
@@ -532,7 +531,6 @@ Otherwise the results generally patterned as expected: adults were more exclusiv
 
 These findings add to our descriptive basis of vocal development in Tseltal and suggest that social feedback loops are a salient pattern of adult-child interaction across different caregiving approaches and cultural contexts.
 
-
 ## Becoming a Tseltal interactant
 
 In these data, Tseltal adults began the process of drawing children in as interlocutors somewhat earlier than previously observed—in response to canonical babble, which emerges earlier than lexical speech [@brown_interactional_2014; @casillas_early_2020]. Although Tseltal adults may see children’s communicative and linguistic competence as developing first through side participation (i.e., indirectly addressed language) until children produce their first recognizable words [@de_emergent_1998; @de_language_2011], early social feedback loops for vocal behavior begin even earlier: when children start to produce canonical babble. Adult caregivers also adjusted their response patterns across early linguistic development, demonstrating sensitivity to their interlocutor that has been observed with infant-caregiver interactions in other cultural contexts [e.g., English families; @snow_mothers_1977]. These patterns in moment-to-moment adaptation may then derive from heuristics for coordination that apply much more broadly beyond the adult-infant interactions [e.g., adult interactions: @clark_using_1996; @levinson_cognition_2006; non-human animals: @goldstein_social_2003].
@@ -542,7 +540,6 @@ Nevertheless, cultural differences may materialize in other dimensions of intera
 The findings also shed light on how Tseltal children glean linguistic knowledge from their interactions with adults. While rural Tseltal infants are directly addressed by adults about as much as infants in US, UK, and Argentinian urban families [@casillas_early_2020; @bunce_cross_2020], ethnographic report suggests that adult Mayan caregivers instead see children’s side participation in adult interaction as the key arena for pre-verbal communicative and linguistic development [@brown_conversational_1998; @de_emergent_1998; @de_language_2011; @pye_acquisition_2022; @vogt_zinacantan_1969]. The current study shows that, even during the pre-verbal period, adult caregivers are occasionally making contingent responses to child vocalizations, and that their responses are increasingly selective for age-appropriate vocally mature utterances across the first two years. Children picked up on this invitation, yielding further mature vocalizations, and ultimately a route to verbal turn-taking.
 
 Meanwhile, we cannot ignore the potential contribution of the large amount of other-directed speech overhearable to children—which occurs at a rate of 5–6 times that of directed speech in this community [@casillas_early_2020]. Especially considering that Tseltal children are socialized as side participants from an early age [@clark_using_1996; @foushee_infants_2023; @de_emergent_1998], adults’ responsiveness to infant vocalizations is only one of many resources from which Tseltal children pick up and practice communicative and linguistic skills.
-
 
 ## Early turn-taking behaviors across cultures
 
