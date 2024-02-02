@@ -1,0 +1,21 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{turntaking_paper_files/figure-latex/vcm trajectories plot-1.pdf}
+\caption{(\#fig:vcm trajectories plot)The proportions of child vocalizations that are non-canonical (red dots and curve), canonical (green dots and curve), and lexical (blue dots and curve) at different ages between 2 and 24 months. The curves are based on local regression.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{turntaking_paper_files/figure-latex/adult response model plot-1.pdf}
+\caption{(\#fig:adult response model plot)The estimated probability of children's non-canonical (red), canonical (green), and lexical (blue) vocalizations that receive adult response at different ages between 2 and 24 months, either out of conversation burst (left facet) or within burst (right facet). Error bars indicate the variability or confidence interval for each point estimate.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{turntaking_paper_files/figure-latex/social loop plot-1.pdf}
+\caption{(\#fig:social loop plot)The estimated probability of children's vocalizations that are lexical at 6 to 12 months old, 12 to 18 months old and 18 to 24 months old, given their prior utterance is responded to by an adult (red) or not (light orange), and whether their prior utterance is non-lexical (left facet) or lexical (right facet). Error bars indicate the variability or confidence interval for each point estimate.}
+\end{figure*}

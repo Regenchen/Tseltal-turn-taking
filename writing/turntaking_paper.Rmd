@@ -1,5 +1,6 @@
 ---
 title             : "A social feedback loop supporting early vocal learning in Tseltal Mayan families"
+shorttitle        : "Social feedback loop in Tseltal"
 
 author: 
   - name          : "Yuchen Jin"
@@ -53,11 +54,12 @@ affiliation:
 
 abstract: |
  How do adult caregivers respond to children’s vocalizations in non-child-centric culture, and how is it related to children’s language development? The present study examined evidence for the social feedback loop in vocal interaction between adults and children under 2;0 in rural Tseltal Mayan families. We found that Tseltal adults respond more to children’s canonical and lexical vocalizations, relative to non-canonical vocalizations, and become increasingly selective for lexicality over age. Such adult responsiveness is linked to a higher likelihood of children producing lexical vocalizations immediately afterwards. Our findings parallel the results in previous US-based studies, underscoring the universal relevance of social feedback loops in adult-child interactions and their significant role in shaping early language development across diverse cultural settings. 
-  
-  
-keywords          : "turn-taking", "parent-child interaction", "child-directed speech", "vocal learning", "language development"
 
-wordcount         : "X"
+
+  
+keywords          : "turn-taking, parent-child interaction, child-directed speech, vocal learning, language development"
+
+wordcount         : "5373"
 
 bibliography      : "TseltalTurntaking.bib"
 
@@ -71,7 +73,10 @@ tablelist         : no
 footnotelist      : no
 
 classoption       : "man"
-output            : TseltalTurntaking_pdf
+output            : 
+  papaja::apa6_pdf:
+    latex_engine: xelatex
+
 ---
 
 ```{r setup, include = FALSE}
@@ -80,25 +85,98 @@ library(tidyverse)
 library(here)
 library(ggridges)
 library(lme4)
+library(lmerTest)
 library(ggpubr)
 library(cowplot)
 
 r_refs("TseltalTurntaking.bib")
+knitr::opts_chunk$set(warning = FALSE)
 ```
 
+
+```{r import data, include=FALSE}
+allchi <- read.csv(here("data", "children_annot.csv"))
+allotr <- read.csv(here("data", "caregivers_annot.csv"))
+allinter <- read.csv(here("data", "interactions_annot.csv"))
+
+```
+
+```{r descriptive, message=FALSE}
+# target children age summary
+ages <- allchi %>%
+  dplyr::select(ptcp, age) %>%
+  distinct() %>%
+  summarize(mean = mean(age), 
+            median = median(age), 
+            min = min(age), 
+            max = max(age)) 
+
+# total number of target children
+total_children <- length(unique(bind_rows(allchi, allotr)$ptcp))
+
+# total number of target-child-directed utterances
+total_utts <- length(allotr)
+
+# proportion of target-child-directed utterances by spearkers
+props_by_spkr <- allotr %>%
+  group_by(spkr) %>%
+  summarize(n = n()) %>%
+  ungroup() %>%
+  mutate(prop = n/sum(n)*100)
+
+# utterances produced by children each minute
+utts_per_min_CHI <- allchi %>%
+  dplyr::select(source, n_utts_per_min)%>%
+  distinct() %>%
+  summarize(mean = mean(n_utts_per_min), 
+            median = median(n_utts_per_min),
+            min = min(n_utts_per_min), 
+            max = max(n_utts_per_min))
+
+# utterances produced by caregivers each minute
+utts_per_min_OTR <- allotr %>%
+  # because n_utts_per_min is calculated for each type of caregiver separately
+  dplyr::select(source, n_utts_per_min, spkr_bi)%>%
+  distinct() %>%
+  group_by(source) %>%
+  summarize(n_utts_per_min = sum(n_utts_per_min)) %>%
+  ungroup() %>%
+  summarize(mean = mean(n_utts_per_min), 
+            median = median(n_utts_per_min),
+            min = min(n_utts_per_min), 
+            max = max(n_utts_per_min))
+
+# utterances produced by adult caregivers each minute
+utts_per_min_ADU <- allotr %>%
+  filter(spkr_bi == "ADU" | is.na(spkr_bi)) %>%
+  dplyr::select(source, n_utts_per_min)%>%
+  distinct() %>%
+  summarize(mean = mean(n_utts_per_min), 
+            median = median(n_utts_per_min),
+            min = min(n_utts_per_min), 
+            max = max(n_utts_per_min))
+
+# proportion of target children's utterances that receive adults' responses
+props_by_resp <- allchi %>%
+  group_by(response) %>%
+  summarize(n = n()) %>%
+  ungroup() %>%
+  mutate(prop = n/sum(n)*100)
+
+```
 
 
 # Introduction
 
-Social, vocal interaction between infants and adults is hypothesized to play an important role in infants’ early linguistic development (e.g., Bateson, 1975; Donnelly & Kidd, 2021; Kuhl, 2007; Goldstein & Schwade, 2008; Snow, 1997). Vocal and non-vocal turn-taking between infants and caregivers begins as young as two months (Bateson, 1975; Trevarthen & Aitken, 2001) and, over the course of early childhood, has been associated with linguistic outcomes including more speech-related vocalizations (Ferjan Ramírez et al., 2020; Gros‐Louis et al., 2014; Gros-Louis & Miller, 2017), more voluble talk (Bergelson et al., 2023), larger vocabulary (Donnelly & Kidd, 2021; Gros-Louis et al., 2014; Nguyen et al., 2023) and language-related brain function (Romeo et al., 2018; Nguyen et al., 2023). Prior work on vocal learning links these broader developmental outcomes to moment-to-moment changes in child and adult vocalization during contingent interaction: a social feedback loop. Specifically, caregivers are more likely to respond to infants’ advanced vocalizations, which in turn, elicits more advanced subsequent vocalizations from infants. Daylong recordings of US 8- to 48-month-old children’s home language environments showed that adults were more likely to respond to speech-related vocalizations compared to other types vocalizations (e.g., cries, laughs, vegetative sounds), and that children are more likely to produce speech-related vocalizations after receiving a contingent adult response to a prior speech-related vocalization (Warlaumont et al., 2014). It is also observed in naturalistic playing between 12-month-old (but not 10-month-old) US infants and their parents that parents’ responses to infants’ canonical vocalizations are associated with greater subsequent canonical babble production by the infants (Gros-Louis & Miller, 2018). Experiments manipulating the timing of caregiver responses show that 8- to 10-month-old US infants are more likely to produce canonical babble (i.e., consonant-vowel structured syllables) after receiving contingent responses, compared to non-contingent ones (Goldstein et al., 2003; Goldstein & Schwade, 2008). Taken together, the aforementioned research suggests that social interaction may influence longer-term language development via moment-to-moment interactional behavior: caregivers’ selective responses to their children and children’s adaptation to their caregivers’ response pattern.
+Social, vocal interaction between infants and adults is hypothesized to play an important role in infants’ early linguistic development [e.g., @bateson_mother_1975; @donnelly_longitudinal_2021; @kuhl_is_2007; @goldstein_social_2008; @snow_mothers_1977]. Vocal and non-vocal turn-taking between infants and caregivers begins as young as two months [@bateson_mother_1975; @trevarthen_infant_2001] and, over the course of early childhood, has been associated with linguistic outcomes including more speech-related vocalizations [@ferjan_ramirez_parent_2020; @groslouis_maternal_2014; @gros-louis_ah_2018], more voluble talk [@bergelson_everyday_2023], larger vocabulary [@donnelly_longitudinal_2021; @groslouis_maternal_2014; @nguyen_your_2023] and language-related brain function [@romeo_beyond_2018; @nguyen_your_2023]. Prior work on vocal learning links these broader developmental outcomes to moment-to-moment changes in child and adult vocalization during contingent interaction: a social feedback loop. Specifically, caregivers are more likely to respond to infants’ advanced vocalizations, which in turn, elicits more advanced subsequent vocalizations from infants. Daylong recordings of US 8- to 48-month-old children’s home language environments showed that adults were more likely to respond to speech-related vocalizations compared to other types vocalizations (e.g., cries, laughs, vegetative sounds), and that children are more likely to produce speech-related vocalizations after receiving a contingent adult response to a prior speech-related vocalization [@warlaumont_social_2014]. It is also observed in naturalistic playing between 12-month-old (but not 10-month-old) US infants and their parents that parents’ responses to infants’ canonical vocalizations are associated with greater subsequent canonical babble production by the infants [@gros-louis_ah_2018]. Experiments manipulating the timing of caregiver responses show that 8- to 10-month-old US infants are more likely to produce canonical babble (i.e., consonant-vowel structured syllables) after receiving contingent responses, compared to non-contingent ones [@goldstein_social_2003; @goldstein_social_2008]. Taken together, the aforementioned research suggests that social interaction may influence longer-term language development via moment-to-moment interactional behavior: caregivers’ selective responses to their children and children’s adaptation to their caregivers’ response pattern.
 
-However, the aforementioned findings are primarily based on English-speaking US families, and thus reflect encultured modes of caregiver-child interaction that are unlikely to be universal (Gaskins, 2020; Ochs & Kremer-Sadl, 2020). Caregivers’ response pattern is largely a reflection of their beliefs about whether and how much children are capable of reciprocal communication, which suggests a potential for cross-culture variation in early interactions. In the US, particularly in contemporary white and middle-class US communities, caregivers often prioritize and accommodate infants’ and young children’s interactional bids, with the pedagogical aim of helping them communicate and learn language (Gaskins, 2006; Heath, 1983; Snow, 1977; Ochs & Kremer-Sadl, 2020). These culturally-specific beliefs may drive some of the findings we reviewed above: US adult caregivers may frequently engage young children in vocal interaction in a way that accommodates the child’s developing linguistic and social abilities and encourages them, in turn, to respond with more desired (i.e., mature) vocalizations. For instance, US adults’ responses to children are generally shorter, less complex, and leave longer gaps than their responses to other adults (Elmlinger et al., 2019). Adults adjust their expectations for how children would vocalize to communicate as they become more proficient language users. Infants’ smiles, cries, and sustained gaze elicit maternal vocal response in early infancy but not in later toddlerhood, when maternal vocal responses are reserved more exclusively for children’s linguistic vocalizations (Snow, 1977; Yoo et al., 2018). Recent computational work demonstrates how adults’ beliefs about children’s skills and intentions influence their interpretations of child vocalizations, shaping the content of adult-child conversation and scaffolding children’s early communicative skills (Meylan et al., 2023). In sum, both the processes of establishing mutual intention and practices around verbal turn-taking are subject to parental beliefs, which are culturally embedded.
+However, the aforementioned findings are primarily based on English-speaking US families, and thus reflect encultured modes of caregiver-child interaction that are unlikely to be universal [@gaskins_cultural_2020; @ochs_ethical_2020]. Caregivers’ response pattern is largely a reflection of their beliefs about whether and how much children are capable of reciprocal communication, which suggests a potential for cross-culture variation in early interactions. In the US, particularly in contemporary white and middle-class US communities, caregivers often prioritize and accommodate infants’ and young children’s interactional bids, with the pedagogical aim of helping them communicate and learn language [@gaskins_cultural_2006; @heath_ways_1983; @snow_mothers_1977; @ochs_ethical_2020]. These culturally-specific beliefs may drive some of the findings we reviewed above: US adult caregivers may frequently engage young children in vocal interaction in a way that accommodates the child’s developing linguistic and social abilities and encourages them, in turn, to respond with more desired (i.e., mature) vocalizations. For instance, US adults’ responses to children are generally shorter, less complex, and leave longer gaps than their responses to other adults [@elmlinger_ecology_2019]. Adults adjust their expectations for how children would vocalize to communicate as they become more proficient language users. Infants’ smiles, cries, and sustained gaze elicit maternal vocal response in early infancy but not in later toddlerhood, when maternal vocal responses are reserved more exclusively for children’s linguistic vocalizations [@snow_mothers_1977; @yoo_origin_2018]. Recent computational work demonstrates how adults’ beliefs about children’s skills and intentions influence their interpretations of child vocalizations, shaping the content of adult-child conversation and scaffolding children’s early communicative skills [@meylan_adults_2023]. In sum, both the processes of establishing mutual intention and practices around verbal turn-taking are subject to parental beliefs, which are culturally embedded.
 
 In the present work, we examine evidence for a social feedback loop in Tseltal Mayan child-caregiver interaction, where adaptive and contingent vocal behavior cannot be as easily ascribed to caregiver pedagogical aims, as it can be in US-based research.
 
 ## Early language socialization in Mayan communities
 
-Typical language development in rural Mayan communities proceeds on a similar timeline to that observed in urban Western communities, but with a different set of encultured practices and beliefs around caregivers’ role in early child language development (Brown, 2011, 2014; Casillas et al., 2020; Liszkowski et al., 2012). In their home language environments, Tseltal Mayan infants are directly addressed by adults about as much as US, UK, and Argentinian infants are (Casillas et al., 2020; Bunce et al, in revision; see also de León, 1998). However, ethnographic investigations of Mayan language socialization suggest that adult caregivers may not see directed speech as the most essential for children’s early communicative development—rather, children are understood to first develop their communicative and linguistic skills as side participants in adult-centered interaction (Brown, 1998; de León, 1998; 2011; Pye, 1993; Vogt, 1969). For most of their first year, infants are carried by a caregiver most of the time during the day, giving them close and frequent access to their caregiver’s interactions with others. During this early period of infancy, caregivers’ responses to infants’ (non-linguistic) vocalizations, gestures, and actions focus a great deal on simple social routines, and caregivers may quote infants’ apparent intentional communicative behaviors as a kind of proto-speech (León, 1998). When infants become more mobile, around 10 months of age, caregivers begin to address them more often with utterances to manage their behavior. Then, later, the onset of clear dyadic conversation is observed to be initiated by developmental changes of the child rather than the caregiver—when children start to produce one-word utterances, caregivers respond (León, 1998). Thus, Mayan children’s ability to produce words may be crucial for achieving adults’ recognition of them as potential interlocutors. In sum, Mayan children are brought into the adult social world first as side participants before gaining rights as ratified interlocutors—a status achieved once they become recognizable as competent language producers (Brown, 2011; Brown et al., 2014; De León, 2011).
+Typical language development in rural Mayan communities proceeds on a similar timeline to that observed in urban Western communities, but with a different set of encultured practices and beliefs around caregivers’ role in early child language development [@brown_cultural_2011; @brown_interactional_2014; @casillas_early_2020; @liszkowski_prelinguistic_2012]. In their home language environments, Tseltal Mayan infants are directly addressed by adults about as much as US, UK, and Argentinian infants are [@casillas_early_2020; @bunce_cross_2020; see also @de_emergent_1998]. However, ethnographic investigations of Mayan language socialization suggest that adult caregivers may not see directed speech as the most essential for children’s early communicative development—rather, children are understood to first develop their communicative and linguistic skills as side participants in adult-centered interaction [@brown_conversational_1998; @de_emergent_1998; @de_language_2011; @pye_acquisition_2022; @vogt_zinacantan_1969]. For most of their first year, infants are carried by a caregiver most of the time during the day, giving them close and frequent access to their caregiver’s interactions with others. During this early period of infancy, caregivers’ responses to infants’ (non-linguistic) vocalizations, gestures, and actions focus a great deal on simple social routines, and caregivers may quote infants’ apparent intentional communicative behaviors as a kind of proto-speech [@de_emergent_1998]. When infants become more mobile, around 10 months of age, caregivers begin to address them more often with utterances to manage their behavior. Then, later, the onset of clear dyadic conversation is observed to be initiated by developmental changes of the child rather than the caregiver—when children start to produce one-word utterances, caregivers respond [@de_emergent_1998]. Thus, Mayan children’s ability to produce words may be crucial for achieving adults’ recognition of them as potential interlocutors. In sum, Mayan children are brought into the adult social world first as side participants before gaining rights as ratified interlocutors—a status achieved once they become recognizable as competent language producers [@brown_cultural_2011; @brown_interactional_2014; @de_language_2011].
 
 Among all of these reviewed findings, two important pieces of evidence stand out in furthering our hypothesis: (1) research on US communicative development finds that non-word canonical babble sequences are key in the realization of an early social feedback loop for vocal learning, while (2) research on Mayan language socialization suggests that infants’ first lexical utterances are key for the initiation of dyadic interaction—in which a similar feedback loop would presumably emerge. In this case, we expect that social feedback loops vary cross-culturally in their basic requirements and behaviors, which may bring up different impacts on language development. That said, given the limited work on Mayan child-caregiver vocal interaction before age 1;6, we can’t rule out the possibility that social feedback loops for early vocal behavior are driven by similar mechanisms—even across groups with ideologically distinct approaches to infant communication—but we simply haven’t yet observed enough data. In reality, these two outcomes are not mutually exclusive (e.g., ideology may shape the content of a response more than the provision of a response), but we here draw the two possibilities as distinct to illustrate the extent to which one might expect cross-cultural similarity or difference to emerge in early child-caregiver interaction. Based on prior work, we might predict that a social feedback loop for vocal behavior in Mayan interactions becomes clear only later, when children begin to produce words—not earlier, when they begin to produce canonical (non-word) babble.
 
@@ -106,7 +184,7 @@ Among all of these reviewed findings, two important pieces of evidence stand out
 
 In the present study, we asked two questions about Tseltal Mayan child-caregiver interaction under age two (0;2–2;0): 
 
-1. What linguistic features of children’s early speech drive adults to respond (speech-like babble, words, or both)? Based on prior work, we predicted that responsiveness would be driven by children’s use of intelligible words rather than children’s speech-like non-word babble (Brown, 2011; 2014; de León, 1998; 2011).
+1. What linguistic features of children’s early speech drive adults to respond (speech-like babble, words, or both)? Based on prior work, we predicted that responsiveness would be driven by children’s use of intelligible words rather than children’s speech-like non-word babble [@brown_interactional_2014; @brown_cultural_2011; @de_emergent_1998; @de_language_2011].
 
 2. Does adults' responsiveness predict an increased use of these linguistic features in children's subsequent vocal production? Based on the robustness of social feedback effects in the prior literature, we predicted that adult responses to language-like vocalizations would be associated with a greater likelihood of children continuing to produce language-like vocalizations.
 
@@ -117,270 +195,106 @@ We examined these predictions while controlling for both child age (older childr
 
 ## Corpus
 
-The audio recordings on which the present data were based were collected by the final author in 2015–2018 in a rural farming community located in the municipality of Tenejapa, Chiapas, Mexico (Casillas, Brown, et al., 2017). During the day, 55 children under age five wore a vest containing a lightweight stereo audio recorder (Olympus WS-832, Olympus Corporation, Tokyo, Japan) to capture the child’s vocalizations and their surrounding linguistic environment. The recordings were usually 9 to 11 hours long and took place in and around children’s homes when the researcher was not present. 
+The audio recordings on which the present data were based were collected by the final author in 2015–2018 in a rural farming community located in the municipality of Tenejapa, Chiapas, Mexico [@casillas_new_2017]. During the day, 55 children under age five wore a vest containing a lightweight stereo audio recorder (Olympus WS-832, Olympus Corporation, Tokyo, Japan) to capture the child’s vocalizations and their surrounding linguistic environment. The recordings were usually 9 to 11 hours long and took place in and around children’s homes when the researcher was not present. 
 
-We randomly sampled 9 five-minute clips from daylong audio recordings of 32 Tseltal children (16 female) age 2;0 and younger (mean=9.91 months; median=7.5; range=2–24). Most children lived with more than two caregivers, and the average household size was 6 people. Most (84%) mothers and all fathers had some school experience: 31% of mothers and 50% of fathers had completed secondary or higher levels of education. Two children were reported to be learning both Tseltal and Spanish in the home, while the other thirty were only reported to be learning Tseltal. That said, all children were likely exposed to some amount of Spanish via lexical borrowings into Tseltal, Spanish-based television and radio, and nearby adult conversations involving non-Tseltal community members or Tseltal-Spanish bilinguals who prefer to express themselves in both languages.
+We randomly sampled 9 five-minute clips from daylong audio recordings of `r total_children` Tseltal children (16 female) age 2;0 and younger (median=`r round(ages$median, 2)`, range=`r round(ages$min, 2)`--`r round(ages$max, 2)`). Most children lived with more than two caregivers, and the average household size was 6 people. Most (84%) mothers and all fathers had some school experience: 31% of mothers and 50% of fathers had completed secondary or higher levels of education. Two children were reported to be learning both Tseltal and Spanish in the home, while the other thirty were only reported to be learning Tseltal. That said, all children were likely exposed to some amount of Spanish via lexical borrowings into Tseltal, Spanish-based television and radio, and nearby adult conversations involving non-Tseltal community members or Tseltal-Spanish bilinguals who prefer to express themselves in both languages.
 
-These clips were then annotated for all target-child-produced and target-child-directed linguistic vocalizations. That is, any instance of words and babble (i.e., not cries, laughs, or vegetative sounds) that were either produced by the target child or directly addressed to the target child, were transcribed in Tseltal and loosely translated into Spanish. All transcription and loose translation was completed in ELAN (Sloetjes & Wittenburg, 2008) by the second author, who is a native Tenejapan Tseltal speaker.
+These clips were then annotated for all target-child-produced and target-child-directed linguistic vocalizations. That is, any instance of words and babble (i.e., not cries, laughs, or vegetative sounds) that were either produced by the target child or directly addressed to the target child, were transcribed in Tseltal and loosely translated into Spanish. All transcription and loose translation was completed in ELAN [@sloetjes_annotation_2008] by the second author, who is a native Tenejapan Tseltal speaker.
+
 
 ## Annotation
 
-On a first pass through the transcribed data, we first checked and, if necessary, edited the onset and offset boundaries of each utterance to ensure that the timing was precise with respect to the acoustic signal. In this process of comprehensive transcript review, several other corrections in diarization arose, including: potential missed target child speech, over-attribution of target child speech (other children’s speech or non-linguistic target child vocalizations), and the inclusion of other-child-directed speech. These potential corrections were proposed by authors YC, KC, and three research assistants they managed—each trained in the ACLEW Annotation Scheme (Casillas et al., 2017). Potential corrections were sent back to author XMG, a native Tenejapan Tseltal speaker, who confirmed or rejected them as necessary. Each transcript passed through this loop of review until there were no further proposed corrections.
+On a first pass through the transcribed data, we first checked and, if necessary, edited the onset and offset boundaries of each utterance to ensure that the timing was precise with respect to the acoustic signal. In this process of comprehensive transcript review, several other corrections in diarization arose, including: potential missed target child speech, over-attribution of target child speech (other children’s speech or non-linguistic target child vocalizations), and the inclusion of other-child-directed speech. These potential corrections were proposed by authors YC, KC, and three research assistants they managed—each trained in the ACLEW Annotation Scheme [@casillas_new_2017]. Potential corrections were sent back to author XMG, a native Tenejapan Tseltal speaker, who confirmed or rejected them as necessary. Each transcript passed through this loop of review until there were no further proposed corrections.
 
 Additional annotations were added to the corrected transcripts,  including (1) whether each vocalization was a contingent response to a prior vocalization (yes/no), (2) whether each vocalization took place within an interactional burst (yes/no), and (3) the vocal maturity status of target children’s vocalizations (lexical > canonical but non-lexical > neither canonical nor lexical). We describe each of these three annotation types in turn.
 
-A child’s utterance was counted as receiving a contingent response if an adult produced target-child-directed speech within 2 seconds of the child’s utterance offset. For children of this age and with this type of naturalistic recording, we can expect  most child-adult conversational turn transitions to occur within 2 seconds (Casillas & Scaff, 2021; Casillas et al., 2016; Hilbrink et al., 2015; Nguyen et al., 2022). Prior work has also used this 2-second cutoff to classify responses as contingent or non-contingent (e.g., Elmlinger et al., 2022; Goldstein & Schwade, 2008), allowing us to make stronger links to prior findings on the social feedback loop. This annotation was conducted in RStudio (RS Team, 2020) based on the boundaries of utterances.
+A child’s utterance was counted as receiving a contingent response if an adult produced target-child-directed speech within 2 seconds of the child’s utterance offset. For children of this age and with this type of naturalistic recording, we can expect  most child-adult conversational turn transitions to occur within 2 seconds [@casillas_analyzing_2021; @casillas_turn_2016; @hilbrink_early_2015; @nguyen_your_2023]. Prior work has also used this 2-second cutoff to classify responses as contingent or non-contingent [e.g., @elmlinger_immature_2023; @goldstein_social_2008], allowing us to make stronger links to prior findings on the social feedback loop. This annotation was conducted in RStudio [@rstudio] based on the boundaries of utterances.
 
-A child’s utterance was coded as within an ongoing interactional burst if it followed an adult's target-child-directed utterance within 2 seconds. We annotated whether the vocalization occurred within an interactional burst because it serves as an indicator of the adult interlocutor’s attention—we expect a response to the child’s vocalization to be more likely if the adult has recently been responding to the child, than if the child vocalizes during a period of interactional silence. Bursty distributions of linguistic input are themselves a topic of theoretical interest (Abney et al., 2016; Casillas et al., 2020; Cristia et al., 2021; Slone et al., 2023; Tamis-LeMonda et al., 2017), while here we consider it as a control factor in trying to understand patterns of adult responsiveness. This annotation was also conducted in RStudio (RS Team, 2020) based on the boundaries of utterances.
+A child’s utterance was coded as within an ongoing interactional burst if it followed an adult's target-child-directed utterance within 2 seconds. We annotated whether the vocalization occurred within an interactional burst because it serves as an indicator of the adult interlocutor’s attention—we expect a response to the child’s vocalization to be more likely if the adult has recently been responding to the child, than if the child vocalizes during a period of interactional silence. Bursty distributions of linguistic input are themselves a topic of theoretical interest [@abney_bursts_2018; @casillas_early_2020; @slone_temporal_2023; @tamis_power_2017; @goh_burstiness_2008], while here we consider it as a control factor in trying to understand patterns of adult responsiveness. This annotation was also conducted in RStudio [@rstudio] based on the boundaries of utterances.
 
 Vocal maturity annotations were completed manually by classifying each vocalization into one of three types: non-canonical and non-lexical, canonical but non-lexical, or lexical. Canonical vocalizations must (a) contain both consonant and vowel elements and (b) feature speech-like (smooth and rapid; <120 ms) transition timing between the consonant- and vowel-like portions of the syllable. Utterances with a mix of canonical and non-canonical syllables were labeled as canonical. An utterance was marked as lexical, if it contained at least one recognizable word. Expressives such as “oh” and “ah” were counted as a word, if they were meant to be communicative, based on the judgment of the native Tseltal-speaking author. Lexical utterances were counted as such regardless of whether they were canonical or not. Each transcript was double coded and the inter-coder reliability is **NNN**. Both lexical utterances and canonical utterances were regarded as language-like vocalizations, and non-lexical, non-canonical utterances were non-language-like vocalizations. In our vocal maturity ranking, lexical utterances were the most mature and non-lexical, non-canonical utterances were the least.
-
-```{r import data, include=FALSE}
-allchi <- read.csv("")
-allotr <- read.csv("")
-
-```
-
-```{r descriptive, echo=FALSE, message=FALSE}
-ages <- allchi %>%
-  dplyr::select(ptcp, age) %>%
-  distinct() %>%
-  summarize(mean = mean(age), 
-            median = median(age), 
-            min = min(age), 
-            max = max(age)) %>%
-  mutate(across(c(2:5), ~ paste0(. %/% 12, ";", round(. %% 12, 0))))
-
-total_children <- length(unique(bind_rows(allchi, allotr)$ptcp))
-
-total_utts <- rbind(allchi, allotr) %>%
-  group_by(spkr_bi) %>%
-  summarize(n = n())
-
-props_by_spkr <- allotr %>%
-  group_by(spkr) %>%
-  summarize(n = n()) %>%
-  ungroup() %>%
-  mutate(prop = n/sum(n)*100)
-
-utts_per_min_CHI <- allchi %>%
-  group_by(ptcp, source) %>%
-  summarize(n_utts_per_file = n(), 
-            n_utts_per_min = ifelse(nchar(source) == 8, 
-                                    n_utts_per_file/9/5, 
-                                    n_utts_per_file/5)) %>%
-  ungroup() %>%
-  distinct() %>%
-  complete(source = fileinfo$Recording, 
-           fill = list(n_utts_per_min = 0)) %>%
-  mutate(ptcp = ifelse(str_detect(source, "-rec[0-9]"), 
-                       substr(source, 1, 14), 
-                       substr(source, 1, 9))) %>%
-  summarize(mean = mean(n_utts_per_min), 
-            median = median(n_utts_per_min),
-            min = min(n_utts_per_min), 
-            max = max(n_utts_per_min))
-
-
-utts_per_min_OTR <- allotr %>%
-  group_by(ptcp, source) %>%
-  summarize(n_utts_per_file = n(), 
-            n_utts_per_min = ifelse(nchar(source) == 8, 
-                                    n_utts_per_file/9/5, 
-                                    n_utts_per_file/5)) %>%
-  ungroup() %>%
-  distinct() %>%
-  complete(source = fileinfo$Recording, 
-           fill = list(n_utts_per_min = 0)) %>%
-  mutate(ptcp = ifelse(str_detect(source, "-rec[0-9]"), 
-                       substr(source, 1, 14), 
-                       substr(source, 1, 9))) %>%
-  summarize(mean = mean(n_utts_per_min), 
-            median = median(n_utts_per_min),
-            min = min(n_utts_per_min), 
-            max = max(n_utts_per_min))
-
-utts_per_min_ADU <- alladult %>%
-  group_by(ptcp, source) %>%
-  summarize(n_utts_per_file = n(), 
-            n_utts_per_min = ifelse(nchar(source) == 8, 
-                                    n_utts_per_file/9/5, 
-                                    n_utts_per_file/5)) %>%
-  ungroup() %>%
-  distinct() %>%
-  complete(source = fileinfo$Recording, 
-           fill = list(n_utts_per_min = 0)) %>%
-  mutate(ptcp = ifelse(str_detect(source, "-rec[0-9]"), 
-                       substr(source, 1, 14), 
-                       substr(source, 1, 9))) %>%
-  summarize(mean = mean(n_utts_per_min), 
-            median = median(n_utts_per_min),
-            min = min(n_utts_per_min), 
-            max = max(n_utts_per_min))
-
-props_by_resp <- allchi %>%
-  group_by(response) %>%
-  summarize(n = n()) %>%
-  ungroup() %>%
-  mutate(prop = n/sum(n)*100)
-
-props_by_cont <- UTTdat %>%
-  filter(spkr_bi == "ADU") %>%
-  group_by(contingency) %>%
-  summarize(n = n()) %>%
-  ungroup() %>%
-  mutate(prop = n/sum(n)*100)
-
-
-```
-
-Of the `r total_children` children, they produced, on average, `r round(utts_per_min_CHI$mean, 1)` linguistic vocalizations/minute (median=`r round(utts_per_min_CHI$median, 1)`, range=`r round(utts_per_min_CHI$min, 1)`--`r round(utts_per_min_CHI$max, 1)`) and heard `r round(utts_per_min_OTR$mean, 1)` child-directed vocalizations/minute (median=`r round(utts_per_min_OTR$median, 1)`, range=`r round(utts_per_min_OTR$min, 1)`--`r round(utts_per_min_OTR$max, 1)`, `r round(filter(props_by_spkr, spkr == "woman")$prop, 1)`% from women, `r round(filter(props_by_spkr, spkr == "girl")$prop, 1)`% from girls, `r round(filter(props_by_spkr, spkr == "man")$prop, 1)`% from men, and `r round(filter(props_by_spkr, spkr == "boy")$prop, 1)`% from boys across all recordings)_ Of the `r format(sum(filter(props_by_spkr, spkr == "woman")$n, filter(props_by_spkr, spkr == "man")$n), big_mark = ",")` adult-produced utterances detected, `r round(filter(props_by_cont, contingency == "yes")$prop, 1)`% of these were timely contingent responses to children's vocalizations. That is, adults produce `r round(utts_per_min_ADU$mean, 1)` child-directed vocalizations/minute (median=`r round(utts_per_min_ADU$median, 1)`, range=`r round(utts_per_min_ADU$min, 1)`--`r round(utts_per_min_OTR$max, 1)`). This means that only `r round(filter(props_by_resp, response == "responded")$prop, 1)`% of children's vocalizations received contingent adult responses.
-
-
-```{r analysis of general feature, echo=FALSE, message=FALSE}
-## Analysis
-## overview for ALL chi's vocalization
-
-# how often is each child responded to?
-freq <- table(allchi$ptcp, allchi$response) %>% 
-  as.data.frame() %>% 
-  pivot_wider(names_from = Var2, values_from = Freq)  %>% 
-  mutate(resp_prop = responded/(responded + `not-responded`)) %>%
-  rename(ptcp = Var1)
-
-meanresp_prop <- paste0(round(mean(freq$resp_prop)*100, 2), "%")
-sdresp_prop <- round(sd(freq$resp_prop),2)
-
-# what is the timing for each turn?
-timing <- allchi %>% 
-  filter(!is.na(gap))%>%
-  mutate(gapORoverlap = if_else(gap > 0, "gap", "overlap"))
-
-gapcounts <- table(timing$gapORoverlap)
-propgap <- paste0(round((gapcounts["gap"]/sum(gapcounts))*100,2), "%")
-propoverlap <- paste0(round((gapcounts["overlap"]/sum(gapcounts))*100,2), "%")
-meangap <- timing %>% filter(gapORoverlap == "gap") %>% pull(gap) %>% mean()
-meanoverlap <- timing %>% filter(gapORoverlap == "overlap") %>% pull(gap) %>% mean()
-
-## within attention
-allchi_att <- allchi %>%
-  filter(attended == "within attention")
-
-# how often is each child responded to?
-freq_att <- table(allchi_att$ptcp, allchi_att$response) %>% 
-  as.data.frame() %>% 
-  pivot_wider(names_from = Var2, values_from = Freq)  %>% 
-  mutate(resp_prop = responded/(responded + `not-responded`)) %>%
-  rename(ptcp = Var1)
-
-meanresp_prop_att <- paste0(round(mean(freq_att$resp_prop)*100, 2), "%")
-sdresp_prop_att <- round(sd(freq_att$resp_prop),2)
-
-# what is the timing for each turn?
-timing_att <- allchi_att %>% 
-  filter(!is.na(gap))%>%
-  mutate(gapORoverlap = if_else(gap > 0, "gap", "overlap"))
-
-gapcounts_att <- table(timing_att$gapORoverlap)
-propgap_att <- paste0(round((gapcounts_att["gap"]/sum(gapcounts_att)*100),2), "%")
-propoverlap_att <- paste0(round((gapcounts_att["overlap"]/sum(gapcounts_att)*100),2), "%")
-meangap_att <- timing_att %>% filter(gapORoverlap == "gap") %>% pull(gap) %>% mean()
-meanoverlap_att <- timing_att %>% filter(gapORoverlap == "overlap") %>% pull(gap) %>% mean()
-
-
-## out of attention
-allchi_notatt <- allchi %>%
-  filter(attended == "out of attention")
-
-# how often is each child responded to?
-freq_notatt <- table(allchi_notatt$ptcp, allchi_notatt$response) %>% 
-  as.data.frame() %>% 
-  pivot_wider(names_from = Var2, values_from = Freq)  %>% 
-  mutate(resp_prop = responded/(responded + `not-responded`)) %>%
-  rename(ptcp = Var1)
-
-meanresp_prop_notatt <- paste0(round(mean(freq_notatt$resp_prop)*100, 2), "%")
-sdresp_prop_notatt <- round(sd(freq_notatt$resp_prop),2)
-
-
-```
-
-## Overall adults' responsiveness
-
--   Overall, Tseltal adults respond to `r meanresp_prop` of all children's utterances (sd = `r sdresp_prop`).
-
-    -   `r propgap` of their responses don't overlap with children's speech. The average length of gaps is `r meangap` seconds.
-
-    -   `r propoverlap` of their responses overlap with children's speech. The average length of overlaps is `r -meanoverlap` seconds.
-
--   When they have already attended to the children, their response rate is `r meanresp_prop_att` (sd = `r sdresp_prop_att`).
-
-    -   `r propgap_att` of their responses don't overlap with children's speech. The average length of gaps is `r meangap_att` seconds.
-
-    -   `r propoverlap_att` of their responses overlap with children's speech. The average length of overlaps is `r -meanoverlap_att` seconds.
-
--   When their attention is re-directed by children, their response rate is `r meanresp_prop_notatt` (sd = `r sdresp_prop_notatt`).
-
 
 
 # Results
 
-All analyses and plots were conducted in RStudio (RS Team, 2020) using the tidyverse (Wickham et al., 2019) and lme4 (Bates et al., 2014) packages. A reproducible manuscript in which these analyses can be inspected on the basis of anonymized data are publicly available at the following repository **(URL)**.
+All analyses and plots were conducted in RStudio [@rstudio] using the tidyverse [@R-tidyverse] and lme4 [@R-lme4] packages. A reproducible manuscript in which these analyses can be inspected on the basis of anonymized data are publicly available at the following repository: https://github.com/Regenchen/Tseltal-turn-taking/tree/145847cef20ab3f79242c52459eaf57fa5b4db71/data.
 
 ## Tseltal children’s vocal development
 
-We first verified whether the vocal maturity data in our new corpus align with expectations based on the literature at large, as well as prior work on vocal maturity in this community (Casillas et al., 2020). Overall, we found that the 32 children produced, on average, 2.2 vocalizations per minute (median=0, range=0–24). As shown in Figure 1, children begin by exclusively producing non-canonical and non-lexical vocalizations. Then, between 0;6 and 1;0, there is a decline in the use of non-canonical babble and an increase in the use of canonical babble. Recognizable words are observed as early as 0;6, picking up speed just before 1;0 and continuing to increase across the rest of the observed age range [^@]. This trajectory aligns with previous research on Tseltal children’s language development and is also quite similar to what we know about US children.
+We first verified whether the vocal maturity data in our new corpus align with expectations based on the literature at large, as well as prior work on vocal maturity in this community [@casillas_early_2020]. Overall, we found that the `r total_children` children produced, on average, `r round(utts_per_min_CHI$mean, 2)` vocalizations/minute (median=`r round(utts_per_min_CHI$median, 2)`, range=`r round(utts_per_min_CHI$min, 2)`--`r round(utts_per_min_CHI$max, 2)`). As shown in Figure 1, children begin by exclusively producing non-canonical and non-lexical vocalizations. Then, between 0;6 and 1;0, there is a decline in the use of non-canonical babble and an increase in the use of canonical babble. Recognizable words are observed as early as 0;6, picking up speed just before 1;0 and continuing to increase across the rest of the observed age range [^@]. This trajectory aligns with previous research on Tseltal children’s language development and is also quite similar to what we know about US children.
 
-[^@]: As a reminder, lexical status was annotated from the perspective of a native Tseltal speaker —- the earliest words in this dataset primarily included sounds such as “ah” and “mm”, and were marked as words because they were clearly interpretable to the speaker as lexical expressives, produced in the appropriate context. **Clear productions of non-expressives (e.g., “xyz”) became more common around age X;Y.** Judging the lexical status of early vocalizations is always subjective to some extent. Given our focus on the recognizability of Tseltal children as interlocutors for their caregivers, it is essential that we classify utterances from a Tseltal perspective.
+[^@]: As a reminder, lexical status was annotated from the perspective of a native Tseltal speaker —- the earliest words in this dataset primarily included sounds such as “ah” and “mm”, and were marked as words because they were clearly interpretable to the speaker as lexical expressives, produced in the appropriate context. Clear productions of non-expressives (e.g., “nii” which means "that" in English, “ine” which means "look" in English, “ila” which means "take" in English) appeared around 9 months. Judging the lexical status of early vocalizations is always subjective to some extent. Given our focus on the recognizability of Tseltal children as interlocutors for their caregivers, it is essential that we classify utterances from a Tseltal perspective.
 
-```{r vcm trajectories plot, echo=FALSE, message=FALSE, fig.width=10}
-voc.type_color <- c("non-canonical" = "#f8766D", "canonical" = "#00BA38", "lexical" = "#619CFF")
+```{r vcm trajectories plot, results='hide', message=FALSE, fig.width=10, fig.height = 7, fig.cap = "The proportions of child vocalizations that are non-canonical (red dots and curve), canonical (green dots and curve), and lexical (blue dots and curve) at different ages between 2 and 24 months. The curves are based on local regression."}
+
+voc_type_color <- c("NCB" = "#f8766D", "CB" = "#00BA38", "LEX" = "#619CFF")
 
 vcm_curve <- allchi %>%
   group_by(ptcp, age) %>%
   mutate(utts = n()) %>%
-  group_by(ptcp, age, voc.type) %>%
+  group_by(ptcp, age, voc_type) %>%
   summarize(n = n(), 
             prop = n/utts) %>%
   distinct() %>%
   ungroup() %>%
   group_by(ptcp, age) %>%
-  complete(voc.type = c("NCB", "CB", "LEX"), 
+  complete(voc_type = c("NCB", "CB", "LEX"), 
            fill = list(n = 0, prop = 0)) %>%
-  mutate(voc.type = factor(voc.type, levels = c("NCB", "CB", "LEX"), 
-                           labels = c("non-canonical", "canonical", "lexical"))) %>%
-  ggplot(aes(x = age, y = prop, color = voc.type, fill = voc.type)) + 
+  ggplot(aes(x = age, y = prop, color = voc_type, fill = voc_type)) + 
   geom_smooth(method = "loess") + 
   geom_point() + 
   coord_cartesian(ylim = c(0, 1)) + 
   labs(x = "Age (months)", y = "Proportion of child vocalizations", 
-       color = "Vocal maturity", fill = "Vocal maturity",
-       tag = "(A)") +
-  scale_x_continuous(breaks = c(0, 6, 12, 18, 24, 30, 36, 42, 48, 54)) + 
-  scale_color_manual(values = voc.type_color) +
+       color = "Vocal maturity", fill = "Vocal maturity") +
+  scale_x_continuous(breaks = c(0, 6, 12, 18, 24)) + 
+  scale_color_manual(values = voc_type_color,
+                     breaks = c("NCB", "CB", "LEX"), 
+                       labels = c("non-canonical",
+                                  "canonical",
+                                  "lexical")) +
+  scale_fill_manual(values = voc_type_color,
+                     breaks = c("NCB", "CB", "LEX"), 
+                       labels = c("non-canonical",
+                                  "canonical",
+                                  "lexical")) +
   theme_classic(base_size = 22) +
   theme(legend.position = c(.98, .98),
     legend.justification = c("right", "top"),
     plot.tag = element_text(face = "bold"))
 
-legend <- get_legend(vcm_curve + theme(legend.position = "bottom"))
+vcm_curve
 
 ```
 
 
 
-
 ## Overall target child-directed input
 
-Overall, the 32 target children heard `r xxxxx` target-child-directed utterances, coming to a rate of 0.6 vocalizations per minute (median=0, range=0–8.6), among which 66.6% came from women, 21.4% from girls, 7.5% from men, and 4.5% from boys. That is, these children received more directed input from female speakers compared to male speakers, and more from adults compared to other children. Adult caregivers produced 0.39 child-directed utterances/minute (mean=0, range=0–8.6). Of the 1,329 child-directed utterances produced by adults, 49.3% were temporally contingent responses to children’s vocalizations (i.e., appearing within two seconds of offset of the preceding child utterance). Thus, only 9.83% of target children’s utterances received a temporally contingent adult response, which is lower than a previous estimate of ~20% observed with a smaller and broader age ranging sample of Tseltal children (N=10, age range=0;2-3;0: Elmlinger, Goldstein & Casillas, 2022).
+Overall, the `r total_children` target children heard `r total_utts` target-child-directed utterances, coming to a rate of `r round(utts_per_min_OTR$mean, 2)` vocalizations per minute (median=`r round(utts_per_min_OTR$median, 2)`, range=`r round(utts_per_min_OTR$min, 2)`--`r round(utts_per_min_OTR$max, 2)`), among which  `r round(filter(props_by_spkr, spkr == "woman")$prop, 2)`% from women, `r round(filter(props_by_spkr, spkr == "girl")$prop, 2)`% from girls, `r round(filter(props_by_spkr, spkr == "man")$prop, 2)`% from men, and `r round(filter(props_by_spkr, spkr == "boy")$prop, 2)`% from boys. That is, these children received more directed input from female speakers compared to male speakers, and more from adults compared to other children. Adult caregivers produced `r round(utts_per_min_ADU$mean, 2)` child-directed utterances/minute (median=`r round(utts_per_min_ADU$median, 2)`, range=`r round(utts_per_min_ADU$min, 2)`--`r round(utts_per_min_OTR$max, 2)`). Of the 1,329 child-directed utterances produced by adults, only `r round(filter(props_by_resp, response == "responded")$prop, 1)`% of target children’s utterances received a temporally contingent adult response (i.e., appearing within two seconds of offset of the preceding child utterance), which is lower than a previous estimate of ~20% observed with a smaller and broader age ranging sample of Tseltal children (N=10, age range=0;2-3;0, [@elmlinger_immature_2023]).
 
 
-```{r adult resp model}
-mod_att_int_voc <- glmer(response ~ timing*age_scaled + voc.type + voc.type:age_scaled +
+```{r adult resp model, results='hide', message=FALSE}
+# only look at transcripts that contain target children's utterances
+allchi_mod <- allchi %>% 
+  filter(!is.na(time_start))
+
+meanage <- mean(allchi_mod$age)
+sdage <- sd(allchi_mod$age)
+
+allchi_mod <- allchi_mod %>%
+  mutate(age_scaled = (age - meanage)/sdage, 
+         response = as.factor(response),
+         voc_type = as.factor(voc_type),
+         voc_type = relevel(voc_type, ref = "NCB"),
+         burst = as.factor(burst),
+         burst = relevel(burst, ref = "out of burst"),
+         ptcp = as.factor(ptcp))
+  
+
+mod_adu_resp <- glmer(response ~ burst*age_scaled + voc_type + voc_type:age_scaled +
                        (1|ptcp), 
                      family = binomial, 
-                     allchi)
-
+                     allchi_mod)
 ```
 
 
@@ -388,42 +302,40 @@ mod_att_int_voc <- glmer(response ~ timing*age_scaled + voc.type + voc.type:age_
 
 We used logistic mixed-effects regression [^@] to predict whether a child’s utterance received a response (yes/no), given the utterance’s vocal maturity (non-canonical/canonical/lexical), the target child’s age in months (scaled), and their two-way interaction. To this base model, we added whether the utterance occurred within an interactional burst (yes/no) and a two-way interaction between interaction burst status and age. As described above, we expected that target child vocalizations produced within an ongoing interaction would have a higher overall likelihood of receiving a response. This pattern may be sensitive to child age; compared to older children, younger children who are more often treated as side participants are less likely to succeed in eliciting adults' response when they are not situated in ongoing interactions. Finally, we added by-child random intercepts. 
 
-More vocally mature utterances were significantly more likely to receive a temporally contingent adult response (Figure 2). Adults were more likely to respond to target children’s canonical (β=0.546, SE=0.177, p=0.002) and lexical (β=0.637, SE=0.194, p=0.001) vocalizations, compared to non-canonical (and non-lexical) vocalizations. We found no evidence for differences in adults’ response rate to target children’s canonical versus lexical vocalizations. A significant interaction effect of age and vocal maturity (β=0.482, SE=0.181, p=0.008) revealed that the difference between adults’ temporal responsiveness to children’s lexical versus non-canonical vocalizations was larger for older children. And, while adult responses were indeed more likely when target children vocalized within an ongoing interactional burst (β=1.898, SE=0.134, p<0.001), the effects of vocal maturity and age were apparent for both within-burst and outside-of-burst target child vocalizations (Figure 2).
+More vocally mature utterances were significantly more likely to receive a temporally contingent adult response (Figure 2). Adults were more likely to respond to target children’s canonical ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",4], 3)`) and lexical vocalizations ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",4], 3)`), compared to non-canonical (and non-lexical) vocalizations. We found no evidence for differences in adults’ response rate to target children’s canonical versus lexical vocalizations. A significant interaction effect of age and vocal maturity ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",4], 3)`) revealed that the difference between adults’ temporal responsiveness to children’s lexical versus non-canonical vocalizations was larger for older children. And, while adult responses were indeed more likely when target children vocalized within an ongoing interactional burst ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",4], 3)`), the effects of vocal maturity and age were apparent for both within-burst and outside-of-burst target child vocalizations (Figure 2).
 
  [^@]: glmer(adults’ response (yes/no; factorial) ~ vocalization maturity (non-canonical/canonical/lexical; factorial) * age (scaled; numeric) + burst (within-burst/out-of-burst; factorial) + burst:age + (1|child))
 
 
-```{r social feedback loop model}
+
+```{r social feedback loop model, results='hide', message=FALSE}
 ## can the presence or absence of language-like element in a child’s vocalization be predicted by whether the child’s most recent vocalization had received a response or not?
 
-loopmod <- allchi_loop %>% 
+loopmod <- allinter %>% 
   mutate(vcm = ifelse(vcm=="C", 1, 0),
          lex = ifelse(lex=="W",1,0),
          lastlex = ifelse(lastvcm=="LEX",1,0),
          lastcb = ifelse(lastvcm=="CB",1,0),
-         lastresp = case_when(lastresp == "continue" ~ "no",
-                              lastresp == "initial" ~ "no",
-                              TRUE ~ lastresp)) %>%
+         agebin = cut(age, breaks = seq(0,24,6), right = T)) %>%
   filter(spkr_bi == "CHI",
          lastresp != "unknown",
          lastresp != "adult")
-
-mod_vcm <- glmer(vcm ~ agebin * lastresp + lastcb +
-                       (1 |ptcp), 
-                     family = binomial, 
-                     loopmod)
-
+# exclude children < 6 mo who don't produce lexical speech
 loopmod_lex <- loopmod %>% filter(agebin != "(0,6]") %>% droplevels()
 
-
-# model will converge even when we add lastlex*lastresp
-# but no difference in fitness and the AIC becomes worse
-mod_lex <- glmer(lex ~ agebin * lastresp + lastlex +
+mod_loop_lex <- glmer(lex ~ agebin * lastresp + lastlex +
                        (1 |ptcp), 
                      family = binomial, 
                      loopmod_lex)
 
-screenreg(list(mod_vcm, mod_lex))
+## effect still exists when we treat age as a continuous variable
+meanage_lex <- mean(loopmod_lex$age)
+sdage_lex <- sd(loopmod_lex$age)
+loopmod_lex_alt <- loopmod_lex %>% mutate(age_scaled = (age - meanage_lex)/sdage_lex)
+mod_loop_lex_alt <- glmer(lex ~ age_scaled * lastresp + lastlex +
+                       (1 |ptcp), 
+                     family = binomial, 
+                     loopmod_lex_alt)
 
 
 ```
@@ -434,35 +346,35 @@ screenreg(list(mod_vcm, mod_lex))
 
 We used logistic mixed-effects regression [^@] to predict whether a child’s utterance was lexical (yes/no), given whether the child’s immediately prior utterance was responded to by an adult (yes/no), the target child’s age in months (6–12mo/12–18mo/18–24mo) [^@], and their two-way interaction. Because children younger than 6 months old did not produce lexical speech, we only included data for children older than 6 months of age (*N*=19). We classified children’s age into three bins because children’s lexical production experiences a non-linear surge at around 18 months of age. As a control variable, we then added whether the child’s immediately prior utterance was also lexical; as described above, we expected lexical child vocalizations to be more likely following prior lexical child vocalizations. Finally, we also included by-child random intercepts. 
 
-As results showed, children were significantly more likely to produce lexical vocalizations when their immediately prior vocalization was responded to contingently by an adult (β=1.007, SE=0.345, p=0.004). While as expected, lexical vocalizations are more likely to follow prior lexical vocalizations, and to appear in 18- to 24-month-old children’ speech than 6-12 months (but not 12-18 months), the effect of adult response is significant for all three age groups, regardless of whether prior vocalization is lexical or not (Figure 3).
+As results showed, children were significantly more likely to produce lexical vocalizations when their immediately prior vocalization was responded to contingently by an adult ($\beta$ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",1], 3)`, _SE_ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",2], 3)`, _z_ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",3], 3)`, _p_ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",4], 3)`). While as expected, lexical vocalizations are more likely to follow prior lexical vocalizations, and to appear in 18- to 24-month-old children’ speech than 6-12 months (but not 12-18 months), the effect of adult response is significant for all three age groups, regardless of whether prior vocalization is lexical or not (Figure 3).
 
 [^@]: glmer(lexicality (yes/no; factorial) ~ last_utterance_responded (yes/no; factorial) * agebin (6-12/12-18/18-24; factorial) + last_utterance_lexicality (yes/no; factorial) + (1|child))
 
-[^@]: does this effect come out when age is treated continuously? we might want to put that in a footnote or supplemental materials for transparency
+[^@]: This effect still came out when age was treated as a continuous variable.
 
 
-```{r model plotting, echo=FALSE, fig.width=10, message=FALSE}
+```{r adult response model plot, results='hide', message=FALSE, fig.width=10, fig.height = 10, fig.cap = "The estimated probability of children’s non-canonical (red), canonical (green), and lexical (blue) vocalizations that receive adult response at different ages between 2 and 24 months, either out of conversation burst (left facet) or within burst (right facet). Error bars indicate the variability or confidence interval for each point estimate."}
 # vocal feature: three level
 newdata <- unique(
-  allchi[,c(
+  allchi_mod[,c(
     "age_scaled",
-    "voc.type",
-    "timing")])
+    "voc_type",
+    "burst")])
 
-age.mapping <- allchi %>%
+age.mapping <- allchi_mod %>%
   dplyr::select(age, age_scaled) %>%
   distinct()
 
 # Estimate the predicted counts
 X <- model.matrix(
-  lme4::nobars(formula(mod_int)[-2]), newdata)
-beta <- fixef(mod_int)
+  lme4::nobars(formula(mod_adu_resp)[-2]), newdata)
+beta <- fixef(mod_adu_resp)
 pred <- X %*% beta
 # Convert these (linear) predictions back to the response scale
 pred.ucount <- plogis(pred)
 # Estimate confidence intervals
 pred.psim <- MASS::mvrnorm(
-  1000, mu = beta, Sigma = vcov(mod_int))
+  1000, mu = beta, Sigma = vcov(mod_adu_resp))
 pred.psim <- X %*% t(pred.psim)
 
 # Convert these (linear) predictions back to the response scale
@@ -476,21 +388,21 @@ names(ci.ucount) <- c("ucount.low", "ucount.high")
 # pred.ucount.all <- data.frame(newdata, pred.ucount)
 pred.ucount.all <- data.frame(newdata, pred.ucount, ci.ucount)
 pred.ucount.all <- left_join(pred.ucount.all,
-                             dplyr::select(allchi, c("voc.type", "age_scaled", "timing"))) %>%
+                             dplyr::select(allchi_mod, c("voc_type", "age_scaled", "burst"))) %>%
   filter(!(ucount.high == Inf))
 
 # Summarize the real counts
-real.count <- plyr::ddply(allchi,
-                          ~ voc.type + age_scaled + timing,
+real.count <- plyr::ddply(allchi_mod,
+                          ~ voc_type + age_scaled + burst,
                           summarize,
                           m = median(age_scaled),
                           mu = mean(age_scaled))
 real.count <- left_join(real.count,
-                        dplyr::select(allchi, c("voc.type", "age_scaled", "timing"))) 
+                        dplyr::select(allchi_mod, c("voc_type", "age_scaled", "burst"))) 
 
 # Plot the model estimates and real averages
 pred.ucount <- pred.ucount.all %>%
-  group_by(age_scaled, voc.type, timing) %>%
+  group_by(age_scaled, voc_type, burst) %>%
   summarize(
     mean.pred.ucount = mean(pred.ucount),
     mean.ucount.low = mean(ucount.low),
@@ -498,18 +410,18 @@ pred.ucount <- pred.ucount.all %>%
   left_join(age.mapping, by = "age_scaled")
 
 real.count <- real.count %>%
-  group_by(age_scaled, voc.type, timing) %>%
+  group_by(age_scaled, voc_type, burst) %>%
   summarize(
     mean.m = mean(m),
     mean.mu = mean(mu))
 
-voc.type_color <- c("NCB" = "#f8766D", "CB" = "#00BA38", "LEX" = "#619CFF")
+voc_type_color <- c("NCB" = "#f8766D", "CB" = "#00BA38", "LEX" = "#619CFF")
 
 ## the main graph
-tds.model.voc.type.plot <- ggplot(
+adu_resp_mod_plot <- ggplot(
   pred.ucount, aes(
     x = age, y = mean.pred.ucount,
-    colour = voc.type)) +
+    colour = voc_type)) +
   geom_smooth(aes(
     ymin = mean.ucount.low, ymax = mean.ucount.high),
     method = "glm", formula = y~x,
@@ -517,18 +429,18 @@ tds.model.voc.type.plot <- ggplot(
     se = FALSE, size = 1.3, alpha = 0.7) +
   geom_errorbar(aes(
     ymin = mean.ucount.low, ymax = mean.ucount.high), width = 0.8, alpha = 0.7) +
-  facet_wrap(~timing, labeller = labeller(timing = 
-    c("noncontingent" = "Out of burst",
-      "contingent" = "Within burst"))) +
+  facet_wrap(~burst, ncol = 1,
+             labeller = labeller(burst = 
+    c("out of burst" = "Out of burst",
+      "within burst" = "Within burst"))) +
   labs(x = "Age (months)", 
-       y = "Estimated probability of child vocalization\n receiving adult response",
-       tag = "(B)") +
+       y = "Estimated probability of child vocalization\n receiving adult response") +
   scale_color_manual(name = "Vocal maturity",
                        breaks = c("NCB", "CB", "LEX"), 
                        labels = c("non-canonical",
                                   "canonical",
                                   "lexical"),
-                     values = voc.type_color) +
+                     values = voc_type_color) +
   scale_x_continuous(breaks = c(0, 6, 12, 18, 24, 30, 36, 42, 48, 54)) + 
   coord_cartesian(ylim = c(0, 1)) +
   theme_test(base_size = 22) +
@@ -536,105 +448,85 @@ tds.model.voc.type.plot <- ggplot(
     legend.justification = c("left", "top"),
     plot.tag = element_text(face = "bold"))
 
-ggsave("BUCLD2023-fig2_edit.png", tds.model.voc.type.plot, width = 25, height = 8, dpi = 300)
-
-combined <- ggarrange(vcm_curve + theme(legend.position = "none"),
-          tds.model.voc.type.plot + theme(legend.position = 1), 
-          ncol = 2,
-          widths = c(0.65, 1))
-
-combined.w.legend <- plot_grid(combined, legend, 
-                               ncol = 1, 
-                               rel_heights = c(1, 0.2), 
-                               align = c("none", "c"))
-
-ggsave("BUCLD2023-figcombined.png", combined.w.legend, 
-       width = 18, height = 8, dpi = 300)
-
-
-## ONLY different vocal types
-pred.ucount_voc <- pred.ucount.all %>%
-  group_by(voc.type) %>%
-  summarize(
-    mean.pred.ucount = mean(pred.ucount),
-    mean.ucount.low = mean(ucount.low),
-    mean.ucount.high = mean(ucount.high)) 
-
-ggplot() +
-  geom_bar(pred.ucount_voc,
-           mapping = aes(x = voc.type, y = mean.pred.ucount, fill=voc.type), stat="identity", alpha=0.7) +
-  geom_errorbar(pred.ucount_voc,
-                mapping = aes(x = voc.type, ymin = mean.ucount.low, ymax = mean.ucount.high, color=voc.type), 
-                width=0.4, alpha=0.9, size=1.3, show.legend = FALSE) +
-  labs(x = "Vocal maturity", 
-       y = "Estimated probability of child vocalization\n receiving adult response") +
-  scale_fill_manual(name = "Vocal maturity",
-                     breaks = c("NCB", "CB", "LEX"), 
-                       labels = c("non-canonical",
-                                  "canonical",
-                                  "lexical"),
-                     values = voc.type_color)+
-  scale_color_manual(name = "Vocal maturity",
-                    breaks = c("NCB", "CB", "LEX"), 
-                       labels = c("non-canonical",
-                                  "canonical",
-                                  "lexical"),
-                     values = voc.type_color)+
-  scale_x_discrete(breaks = c("NCB", "CB", "LEX"), 
-                       labels = c("non-canonical",
-                                  "canonical",
-                                  "lexical")) +
-  coord_cartesian(ylim = c(0, 1)) +
-  theme_test(base_size = 22) +
-  theme(legend.position = c(.02, .98),
-        legend.justification = c("left", "top"),
-        plot.tag = element_text(face = "bold"))
-
-
-## ONLY contingency
-pred.ucount_contingency <- pred.ucount.all %>%
-  group_by(timing) %>%
-  summarize(
-    mean.pred.ucount = mean(pred.ucount),
-    mean.ucount.low = mean(ucount.low),
-    mean.ucount.high = mean(ucount.high)) 
-
-timing_color <- c("noncontingent" = "darkorange", "contingent" = "gold")
-pred.ucount_contingency$timing <- factor(pred.ucount_contingency$timing, levels = c("noncontingent","contingent"))
-
-ggplot() +
-  geom_bar(pred.ucount_contingency,
-           mapping = aes(x = timing, y = mean.pred.ucount, fill=timing), stat="identity", alpha=0.7) +
-  geom_errorbar(pred.ucount_contingency,
-                mapping = aes(x = timing, ymin = mean.ucount.low, ymax = mean.ucount.high, color=timing), 
-                width=0.4, alpha=0.9, size=1.3, show.legend = FALSE) +
-  labs(x = "Interaction burst", 
-       y = "Estimated probability of child vocalization\n receiving adult response") +
-  scale_fill_manual(name = "Interaction burst",
-                     breaks = c("noncontingent","contingent"), 
-                     labels = c("out of burst", "within burst"),
-                    values = timing_color)+
-  scale_color_manual(name = "Interaction burst",
-                    breaks = c("noncontingent","contingent"), 
-                    labels = c("out of burst", "within burst"),
-                    values = timing_color)+
-  scale_x_discrete(breaks = c("noncontingent","contingent"), 
-                   labels = c("out of burst", "within burst")) +
-  coord_cartesian(ylim = c(0, 1)) +
-  theme_test(base_size = 22) +
-  theme(legend.position = c(.02, .98),
-        legend.justification = c("left", "top"),
-        plot.tag = element_text(face = "bold"))
+adu_resp_mod_plot
 
 ```
 
 
+```{r social loop plot, results='hide', message=FALSE, fig.width=10, fig.height = 10, fig.cap = "The estimated probability of children’s vocalizations that are lexical at 6 to 12 months old, 12 to 18 months old and 18 to 24 months old, given their prior utterance is responded to by an adult (red) or not (light orange), and whether their prior utterance is non-lexical (left facet) or lexical (right facet). Error bars indicate the variability or confidence interval for each point estimate."}
+newdata <- unique(
+  loopmod_lex[,c(
+    "agebin",
+    "lastlex",
+    "lastresp")])
+
+# Estimate the predicted counts
+X <- model.matrix(
+  lme4::nobars(formula(mod_loop_lex)[-2]), newdata)
+beta <- fixef(mod_loop_lex)
+pred <- X %*% beta
+# Convert these (linear) predictions back to the response scale
+pred.ucount <- plogis(pred)
+# Estimate confidence intervals
+pred.psim <- MASS::mvrnorm(
+  1000, mu = beta, Sigma = vcov(mod_loop_lex))
+pred.psim <- X %*% t(pred.psim)
+
+# Convert these (linear) predictions back to the response scale
+pred.ucount.psim <- plogis(pred.psim)
+ci.ucount <- t(apply(
+  pred.ucount.psim, 1, quantile, c(0.025, 0.975), na.rm = TRUE))
+ci.ucount <- data.frame(ci.ucount)
+names(ci.ucount) <- c("ucount.low", "ucount.high")
+
+# Combine the predictions info
+# pred.ucount.all <- data.frame(newdata, pred.ucount)
+pred.ucount.all <- data.frame(newdata, pred.ucount, ci.ucount)
+pred.ucount.all <- left_join(pred.ucount.all,
+                             dplyr::select(loopmod, c("agebin", "lastresp"))) %>%
+  filter(!(ucount.high == Inf))
+
+
+# Plot the model estimates and real averages
+pred.ucount <- pred.ucount.all %>%
+  group_by(agebin, lastresp, lastlex) %>%
+  summarize(
+    mean.pred.ucount = mean(pred.ucount),
+    mean.ucount.low = mean(ucount.low),
+    mean.ucount.high = mean(ucount.high)) 
+
+
+loop_mod_plot <- ggplot(pred.ucount,
+       mapping = aes(x = agebin, y = mean.pred.ucount, color=lastresp, group = lastresp)) +
+  geom_point(position = position_dodge(width=0.5),size=4) +
+  geom_errorbar(mapping = aes(x = agebin, ymin = mean.ucount.low, ymax = mean.ucount.high, color=lastresp), position = position_dodge(width=0.5), 
+                width=0.4, alpha=0.7, size=1.3, show.legend = FALSE) +
+  geom_line(position = position_dodge(width=0.5), size=1.5) +
+  facet_wrap(~lastlex, ncol = 1,
+             labeller = labeller(lastlex = 
+    c("1" = "Prior utterance is lexical",
+      "0" = "Prior utterance is non-lexical"))) +
+  labs(x = "Age bin (months)", 
+       y = "Probability of lexical vocalization") +
+  scale_color_manual(name = "Prior response",
+                     breaks = c("yes", "no"), 
+                     labels = c("yes","no"),
+                     values = c("yes" = "#EE4E34", "no" = "#FCDAB8")) +
+  coord_cartesian(ylim = c(0, 1)) +
+  theme_test(base_size = 20) +
+  theme(legend.position = c(.02, .98),
+        legend.justification = c("left", "top"),
+        plot.tag = element_text(face = "bold"))
+
+loop_mod_plot
+
+```
 
 # Discussion
 
 The present study examined evidence for a social feedback loop in the vocal learning of Tseltal-acquiring infants. Social feedback loops provide a moment-to-moment mechanism for the longer-term influence of social interactions on linguistic and communicative development. Prior work on these feedback loops for vocal learning highlights canonical (speech-like) babble as an inflection point in the development of these loops—canonical babble elicits adult responses that encourage further canonical babble. However, past work on these loops for vocal learning has come almost exclusively from urban and suburban US English-speaking populations, in which these interactive accommodations by adults can be understood as US caregivers’ intentional, belief-driven efforts to engage children in conversations and facilitate their communicative and linguistic skills. To better understand how social feedback loops function in different cultural contexts, the present study examined vocal interaction between adults and children under 2;0 in rural Tseltal Mayan families, where ethnographic evidence led us to predict that feedback loops in vocal behavior would be driven by and elicit recognizable lexical utterances, more so than (non-lexical) canonical babble.
 
-Different from our expectations, we found no evidence that lexical vocalizations play a unique role in Tseltal vocal feedback loops; mirroring prior US data, both lexical utterances and non-lexical canonical babble heightened the chance of a contingent adult response, with no significant difference between response rates to these two more vocally mature categories. In other words, the Tseltal caregivers’ responsiveness patterned similarly to US caregivers’ documented in prior work (Goldstein et al., 2003; Goldstein & Schwade, 2008; Miller & Gros-Louis, 2013).
+Different from our expectations, we found no evidence that lexical vocalizations play a unique role in Tseltal vocal feedback loops; mirroring prior US data, both lexical utterances and non-lexical canonical babble heightened the chance of a contingent adult response, with no significant difference between response rates to these two more vocally mature categories. In other words, the Tseltal caregivers’ responsiveness patterned similarly to US caregivers’ documented in prior work [@goldstein_social_2003; @goldstein_social_2008; @miller_socially_2013].
 
 Otherwise the results generally patterned as expected: adults were more exclusively responsive to lexical vocalization for older children, adult response was more likely when a child’s vocalization occurred within an ongoing interactional burst. Children were more likely to produce a lexical vocalization when their immediately prior vocalization was responded to by an adult or was, itself, lexical. Finally, older children were more likely to produce more vocally mature vocalizations.
 
@@ -643,20 +535,20 @@ These findings add to our descriptive basis of vocal development in Tseltal and 
 
 ## Becoming a Tseltal interactant
 
-In these data, Tseltal adults began the process of drawing children in as interlocutors somewhat earlier than previously observed—in response to canonical babble, which emerges earlier than lexical speech (Brown et al., 2014; Casillas et al., 2020). Although Tseltal adults may see children’s communicative and linguistic competence as developing first through side participation (i.e., indirectly addressed language) until children produce their first recognizable words (de León, 1998; 2011), early social feedback loops for vocal behavior begin even earlier: when children start to produce canonical babble. Adult caregivers also adjusted their response patterns across early linguistic development, demonstrating sensitivity to their interlocutor that has been observed with infant-caregiver interactions in other cultural contexts (e.g., English families; Snow, 1977). These patterns in moment-to-moment adaptation may then derive from heuristics for coordination that apply much more broadly beyond the adult-infant interactions (e.g., adult interactions: Clark, 1996; Levinson, 2006; non-human animals: Goldstein et al., 2003).
+In these data, Tseltal adults began the process of drawing children in as interlocutors somewhat earlier than previously observed—in response to canonical babble, which emerges earlier than lexical speech [@brown_interactional_2014; @casillas_early_2020]. Although Tseltal adults may see children’s communicative and linguistic competence as developing first through side participation (i.e., indirectly addressed language) until children produce their first recognizable words [@de_emergent_1998; @de_language_2011], early social feedback loops for vocal behavior begin even earlier: when children start to produce canonical babble. Adult caregivers also adjusted their response patterns across early linguistic development, demonstrating sensitivity to their interlocutor that has been observed with infant-caregiver interactions in other cultural contexts [e.g., English families; @snow_mothers_1977]. These patterns in moment-to-moment adaptation may then derive from heuristics for coordination that apply much more broadly beyond the adult-infant interactions [e.g., adult interactions: @clark_using_1996; @levinson_cognition_2006; non-human animals: @goldstein_social_2003].
 
-Nevertheless, cultural differences may materialize in other dimensions of interaction and early turn taking that were not explored in the current study, such as the content of the adult responses. For instance, behavioral management utterances (León, 1998) and dialogic repetitions (Brown, 1998) are salient in Tseltal adults’ child-directed speech, but may be less frequently observed in many US contexts (Newport et al., 1977). Tseltal infants are exposed many times a day to adults’ greeting routines during coming and going but are typically not themselves directly greeted (Foushee et al., 2021; de León, 1998), meanwhile, routine words such as hi and bye-bye are frequent in child-directed speech for US English-learning children (e.g., Casey et al., 2023). We suspect that an examination of the content of these utterances would produce an analysis that reflects a Tseltal- and Mayan-specific approach to language socialization. 
+Nevertheless, cultural differences may materialize in other dimensions of interaction and early turn taking that were not explored in the current study, such as the content of the adult responses. For instance, behavioral management utterances [@de_emergent_1998] and dialogic repetitions [@brown_conversational_1998] are salient in Tseltal adults’ child-directed speech, but may be less frequently observed in many US contexts [@newport_mother_1997]. Tseltal infants are exposed many times a day to adults’ greeting routines during coming and going but are typically not themselves directly greeted [@foushee_infants_2023; @de_emergent_1998], meanwhile, routine words such as hi and bye-bye are frequent in child-directed speech for US English-learning children [e.g., @casey_moving_2023]. We suspect that an examination of the content of these utterances would produce an analysis that reflects a Tseltal- and Mayan-specific approach to language socialization. 
 
-The findings also shed light on how Tseltal children glean linguistic knowledge from their interactions with adults. While rural Tseltal infants are directly addressed by adults about as much as infants in US, UK, and Argentinian urban families (Casillas et al., 2020; Bunce et al, in revision), ethnographic report suggests that adult Mayan caregivers instead see children’s side participation in adult interaction as the key arena for pre-verbal communicative and linguistic development (Brown, 1998; de León, 1998; 2011; Pye, 1993; Vogt, 1969). The current study shows that, even during the pre-verbal period, adult caregivers are occasionally making contingent responses to child vocalizations, and that their responses are increasingly selective for age-appropriate vocally mature utterances across the first two years. Children picked up on this invitation, yielding further mature vocalizations, and ultimately a route to verbal turn-taking.
+The findings also shed light on how Tseltal children glean linguistic knowledge from their interactions with adults. While rural Tseltal infants are directly addressed by adults about as much as infants in US, UK, and Argentinian urban families [@casillas_early_2020; @bunce_cross_2020], ethnographic report suggests that adult Mayan caregivers instead see children’s side participation in adult interaction as the key arena for pre-verbal communicative and linguistic development [@brown_conversational_1998; @de_emergent_1998; @de_language_2011; @pye_acquisition_2022; @vogt_zinacantan_1969]. The current study shows that, even during the pre-verbal period, adult caregivers are occasionally making contingent responses to child vocalizations, and that their responses are increasingly selective for age-appropriate vocally mature utterances across the first two years. Children picked up on this invitation, yielding further mature vocalizations, and ultimately a route to verbal turn-taking.
 
-Meanwhile, we cannot ignore the potential contribution of the large amount of other-directed speech overhearable to children—which occurs at a rate of 5–6 times that of directed speech in this community (Casillas et al., 2020). Especially considering that Tseltal children are socialized as side participants from an early age (Clark, 1996; Foushee et al., 2021; León, 1998), adults’ responsiveness to infant vocalizations is only one of many resources from which Tseltal children pick up and practice communicative and linguistic skills.
+Meanwhile, we cannot ignore the potential contribution of the large amount of other-directed speech overhearable to children—which occurs at a rate of 5–6 times that of directed speech in this community [@casillas_early_2020]. Especially considering that Tseltal children are socialized as side participants from an early age [@clark_using_1996; @foushee_infants_2023; @de_emergent_1998], adults’ responsiveness to infant vocalizations is only one of many resources from which Tseltal children pick up and practice communicative and linguistic skills.
 
 
 ## Early turn-taking behaviors across cultures
 
-Even though parenting ideologies and language socialization practices vary across cultures, we can still observe some patterns that are comparable and salient, perhaps the outcome of basic principles of coordination and conversational interaction that are tailored and adapted by linguistic communities around the world (Clark, 1996; Levinson, 2006)—these “basic principles” theories are primarily evolutionary in nature, and put the infant-caregiver interactions we observe here in a much more expansive context. For example, we can interpret our current findings in the framework of joint action, under a circumstance where there can be little common ground assumed beyond shared percepts between a preverbal infant and their adult caregiver (Clark, 1996)—if the adult sees it possible to bring the child into a conversation-like format, they might try and coax this joint action from the infant through selective contingent response for conversation-like structure (turn taking) and language-like vocalization (canonical babble and/or lexical speech). Goldstein and colleagues (2003) see this behavior through a multi-species lens, in which the provision and adaptation of contingent response by mature organisms to immature ones is a generalized and instinctually rooted mechanism for the transmission of animal communication systems. The Human Interaction Engine Hypothesis (Levinson, 2006) would see things somewhat differently, highlighting instead the human-specific aspects of these early instincts for turn-taking structure as building an framework for dynamic, multimodal, and intersubjective engagement between infant and caregiver, in which language development is adapted to unfold. 
+Even though parenting ideologies and language socialization practices vary across cultures, we can still observe some patterns that are comparable and salient, perhaps the outcome of basic principles of coordination and conversational interaction that are tailored and adapted by linguistic communities around the world [@clark_using_1996; @levinson_cognition_2006] —these “basic principles” theories are primarily evolutionary in nature, and put the infant-caregiver interactions we observe here in a much more expansive context. For example, we can interpret our current findings in the framework of joint action, under a circumstance where there can be little common ground assumed beyond shared percepts between a preverbal infant and their adult caregiver [@clark_using_1996] —if the adult sees it possible to bring the child into a conversation-like format, they might try and coax this joint action from the infant through selective contingent response for conversation-like structure (turn taking) and language-like vocalization (canonical babble and/or lexical speech). @goldstein_social_2003 see this behavior through a multi-species lens, in which the provision and adaptation of contingent response by mature organisms to immature ones is a generalized and instinctually rooted mechanism for the transmission of animal communication systems. The Human Interaction Engine Hypothesis [@levinson_cognition_2006] would see things somewhat differently, highlighting instead the human-specific aspects of these early instincts for turn-taking structure as building an framework for dynamic, multimodal, and intersubjective engagement between infant and caregiver, in which language development is adapted to unfold. 
 
-In each of these cases, the theoretical puzzle is to link children’s experiences with language to their linguistic development. While social feedback has been linked to language learning across multiple aspects of linguistic development (Kuhl, 2007; Rowe & Snow, 2020; Tamis-LeMonda et al., 2014), the mechanism that our current findings touch upon is more likely to operate over the timescale of seconds or minutes, which could be underpinned by basic biological or neural processes for behavioral entrainment and synchrony (Nguyen et al., 2021; Wass et al., 2020).
+In each of these cases, the theoretical puzzle is to link children’s experiences with language to their linguistic development. While social feedback has been linked to language learning across multiple aspects of linguistic development [@kuhl_is_2007; @rowe_analyzing_2020; @tamis_why_2014], the mechanism that our current findings touch upon is more likely to operate over the timescale of seconds or minutes, which could be underpinned by basic biological or neural processes for behavioral entrainment and synchrony [@nguyen_neural_2021; @wass_interpersonal_2020].
 
 That said, we do not wish to imply equivalent roles of social feedback loops for language learning across culturally diverse communities. The existence of similar interactional structures for language sheds light on shared mechanisms for language learning and processing but does not imply total parallelism. Rather, based on prior literature and current theory, we can expect substantial room for cross-linguistic and cross-cultural variation in how children learn the grammar, words, and practices for using their home language(s). For example, as mentioned, the vast majority of Tseltal children’s linguistic input comes through overhearing rather than in direct speech. While our findings suggested the social feedback loop between adults and infants exists in Tseltal families as it does in US families, the same phenomena may carry different weight for communicative and linguistic development in different cultural contexts.
 
@@ -665,7 +557,7 @@ That said, we do not wish to imply equivalent roles of social feedback loops for
 
 We used turn transition timing as the criteria for selecting contingent turns, yet it is possible for two unrelated utterances to be temporally contingent (child: “want more” — caregiver: “oh, say hi to brother”). More detailed annotation is needed to address this issue. That said, temporal contingency itself can make an utterance salient to the interlocutor, particularly for young children who haven’t acquired adult-like lexical and pragmatic knowledge.
 
-Future research may want to dig deeper into how social feedback works to support early vocal learning. One possibility is that any contingent adult response—even non-verbal responses—serves as a positive reinforcement of children’s language-like vocalizations. So, non-verbal responses such as laughing, soothing, and action (e.g., giving an object, feeding) can also facilitate early vocal development. Another possible mechanism is that conversational turn-taking encourages infants to incorporate phonetic features of adult speech, which contributes to successful communication and ultimately pushes children toward linguistically mature conversationalists. Research with adults shows that when they are asked to communicate without shared language, they tend to copy their partner’s communicative signals or reuse their own ones that are already understood by their partner, the frequency of which is related to communication success (Fay et al., 2014). We suppose that similar to adults in the experiment, preverbal children equipped with communication intention may pick up on and mimic some phonetic units in adult speech so as to convey their thoughts.
+Future research may want to dig deeper into how social feedback works to support early vocal learning. One possibility is that any contingent adult response—even non-verbal responses—serves as a positive reinforcement of children’s language-like vocalizations. So, non-verbal responses such as laughing, soothing, and action (e.g., giving an object, feeding) can also facilitate early vocal development. Another possible mechanism is that conversational turn-taking encourages infants to incorporate phonetic features of adult speech, which contributes to successful communication and ultimately pushes children toward linguistically mature conversationalists. Research with adults shows that when they are asked to communicate without shared language, they tend to copy their partner’s communicative signals or reuse their own ones that are already understood by their partner, the frequency of which is related to communication success [@fay_creating_2014]. We suppose that similar to adults in the experiment, preverbal children equipped with communication intention may pick up on and mimic some phonetic units in adult speech so as to convey their thoughts.
 
 Finally, we here paint Tseltal (and US) families with a very broad brush, attending to group features rather than individual variability within groups. Future work might instead examine how inter-individual variability in infant vocal interactions among Tseltal families leads to different communicative behaviors and patterns in linguistic development. Also, more research is still needed to help us understand the turn-taking behaviors between children and adults in different culture communities.
 
@@ -673,6 +565,12 @@ Finally, we here paint Tseltal (and US) families with a very broad brush, attend
 # Conclusion
 
 The findings of this study show that Tseltal adults and children engaged in social feedback loops similar to those observed previously in US families. Children’s age and the vocal maturity of their utterances—both lexicality and canonicality—rendered them recognizable to adult caregivers as potential interlocutors, inspiring greater rates of adult contingent response. After being responded to, children were more likely to produce lexical vocalizations, which supports adult responsiveness as one mechanism for facilitating early vocal learning. Apparent cross-cultural similarity here suggests that the social feedback loop for vocal development taps into broader frameworks of coordination and communication, and highlights the need for further investigation to better understand how early turn-taking is then tailored for language socialization in different cultural and linguistic contexts.
+
+
+# Acknowledgements
+
+We are deeply indebted to the participating families and leadership in the Tseltal community in which these data were collected. We also thank Humbertina Gómez Pérez and Rebeca Gúzman López for their essential contributions to participant contribution and data collection and Emily Chan, Elizabeth Mickiewicz, and Isabella di Giovanni for their data annotation efforts. This work was supported by funding from the Social Sciences Division at the University of Chicago and an NSF CAREER grant (BCS-2238609) to MC.
+
 
 
 \newpage
