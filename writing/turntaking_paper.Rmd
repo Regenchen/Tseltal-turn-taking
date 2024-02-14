@@ -227,11 +227,11 @@ All analyses and plots were conducted in RStudio [@rstudio] using the tidyverse 
 
 ## Tseltal children’s vocal development
 
-We first verified whether the vocal maturity data in our new corpus align with expectations based on the literature at large, as well as prior work on vocal maturity in this community [@casillas_early_2020]. Overall, we found that the `r total_children` children produced, on average, `r round(utts_per_min_CHI$mean, 2)` vocalizations/minute (median=`r round(utts_per_min_CHI$median, 2)`, range=`r round(utts_per_min_CHI$min, 2)`--`r round(utts_per_min_CHI$max, 2)`). As shown in Figure 1, children begin by exclusively producing non-canonical and non-lexical vocalizations. Then, between 0;6 and 1;0, there is a decline in the use of non-canonical babble and an increase in the use of canonical babble. Recognizable words are observed as early as 0;6, picking up speed just before 1;0 and continuing to increase across the rest of the observed age range [^@]. This trajectory aligns with previous research on Tseltal children’s language development and is also quite similar to what we know about US children.
+We first verified whether the vocal maturity data in our new corpus align with expectations based on the literature at large, as well as prior work on vocal maturity in this community [@casillas_early_2020]. Overall, we found that the `r total_children` children produced, on average, `r round(utts_per_min_CHI$mean, 2)` vocalizations/minute (median=`r round(utts_per_min_CHI$median, 2)`, range=`r round(utts_per_min_CHI$min, 2)`--`r round(utts_per_min_CHI$max, 2)`). As shown in Figure \@ref(fig:vcm-trajectories-plot), children begin by exclusively producing non-canonical and non-lexical vocalizations. Then, between 0;6 and 1;0, there is a decline in the use of non-canonical babble and an increase in the use of canonical babble. Recognizable words are observed as early as 0;6, picking up speed just before 1;0 and continuing to increase across the rest of the observed age range [^@]. This trajectory aligns with previous research on Tseltal children’s language development and is also quite similar to what we know about US children.
 
 [^@]: As a reminder, lexical status was annotated from the perspective of a native Tseltal speaker —- the earliest words in this dataset primarily included sounds such as “ah” and “mm”, and were marked as words because they were clearly interpretable to the speaker as lexical expressives, produced in the appropriate context. Clear productions of non-expressives (e.g., “nii” which means "that" in English, “ine” which means "look" in English, “ila” which means "take" in English) appeared around 9 months. Judging the lexical status of early vocalizations is always subjective to some extent. Given our focus on the recognizability of Tseltal children as interlocutors for their caregivers, it is essential that we classify utterances from a Tseltal perspective.
 
-```{r vcm trajectories plot, results='hide', message=FALSE, fig.width=10, fig.height = 7, fig.cap = "The proportions of child vocalizations that are non-canonical (red dots and curve), canonical (green dots and curve), and lexical (blue dots and curve) at different ages between 2 and 24 months. The curves are based on local regression."}
+```{r vcm-trajectories-plot, results='hide', message=FALSE, fig.width=10, fig.height = 7, fig.cap = "The proportions of child vocalizations that are non-canonical (red dots and curve), canonical (green dots and curve), and lexical (blue dots and curve) at different ages between 2 and 24 months. The curves are based on local regression."}
 
 voc_type_color <- c("NCB" = "#f8766D", "CB" = "#00BA38", "LEX" = "#619CFF")
 
@@ -269,7 +269,6 @@ vcm_curve <- allchi %>%
     plot.tag = element_text(face = "bold"))
 
 vcm_curve
-
 ```
 
 
@@ -307,7 +306,7 @@ mod_adu_resp <- glmer(response ~ burst*age_scaled + voc_type + voc_type:age_scal
 
 We used logistic mixed-effects regression [^@] to predict whether a child’s utterance received a response (yes/no), given the utterance’s vocal maturity (non-canonical/canonical/lexical), the target child’s age in months (scaled), and their two-way interaction. To this base model, we added whether the utterance occurred within an interactional burst (yes/no) and a two-way interaction between interaction burst status and age. As described above, we expected that target child vocalizations produced within an ongoing interaction would have a higher overall likelihood of receiving a response. This pattern may be sensitive to child age; compared to older children, younger children who are more often treated as side participants are less likely to succeed in eliciting adults' response when they are not situated in ongoing interactions. Finally, we added by-child random intercepts. 
 
-More vocally mature utterances were significantly more likely to receive a temporally contingent adult response (Figure 2). Adults were more likely to respond to target children’s canonical ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",4], 3)`) and lexical vocalizations ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",4], 3)`), compared to non-canonical (and non-lexical) vocalizations. We found no evidence for differences in adults’ response rate to target children’s canonical versus lexical vocalizations. A significant interaction effect of age and vocal maturity ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",4], 3)`) revealed that the difference between adults’ temporal responsiveness to children’s lexical versus non-canonical vocalizations was larger for older children. And, while adult responses were indeed more likely when target children vocalized within an ongoing interactional burst ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",4], 3)`), the effects of vocal maturity and age were apparent for both within-burst and outside-of-burst target child vocalizations (Figure 2).
+More vocally mature utterances were significantly more likely to receive a temporally contingent adult response (Figure \@ref(fig:adult-response-model-plot)). Adults were more likely to respond to target children’s canonical ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeCB",4], 3)`) and lexical vocalizations ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["voc_typeLEX",4], 3)`), compared to non-canonical (and non-lexical) vocalizations. We found no evidence for differences in adults’ response rate to target children’s canonical versus lexical vocalizations. A significant interaction effect of age and vocal maturity ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["age_scaled:voc_typeLEX",4], 3)`) revealed that the difference between adults’ temporal responsiveness to children’s lexical versus non-canonical vocalizations was larger for older children. And, while adult responses were indeed more likely when target children vocalized within an ongoing interactional burst ($\beta$ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",1], 3)`, _SE_ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",2], 3)`, _z_ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",3], 3)`, _p_ = `r round(summary(mod_adu_resp)$coefficients["burstwithin burst",4], 3)`), the effects of vocal maturity and age were apparent for both within-burst and outside-of-burst target child vocalizations (Figure \@ref(fig:adult-response-model-plot)).
 
  [^@]: glmer(adults’ response (yes/no; factorial) ~ vocalization maturity (non-canonical/canonical/lexical; factorial) * age (scaled; numeric) + burst (within-burst/out-of-burst; factorial) + burst:age + (1|child))
 
@@ -341,22 +340,20 @@ mod_loop_lex_alt <- glmer(lex ~ age_scaled * lastresp + lastlex +
                        (1 |ptcp), 
                      family = binomial, 
                      loopmod_lex_alt)
-
-
 ```
 
 ## Children’s vocal production following adults’ responses
 
 We used logistic mixed-effects regression [^@] to predict whether a child’s utterance was lexical (yes/no), given whether the child’s immediately prior utterance was responded to by an adult (yes/no), the target child’s age in months (6–12mo/12–18mo/18–24mo) [^@], and their two-way interaction. Because children younger than 6 months old did not produce lexical speech, we only included data for children older than 6 months of age (*N*=19). We classified children’s age into three bins because children’s lexical production experiences a non-linear surge at around 18 months of age. As a control variable, we then added whether the child’s immediately prior utterance was also lexical; as described above, we expected lexical child vocalizations to be more likely following prior lexical child vocalizations. Finally, we also included by-child random intercepts. 
 
-As results showed, children were significantly more likely to produce lexical vocalizations when their immediately prior vocalization was responded to contingently by an adult ($\beta$ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",1], 3)`, _SE_ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",2], 3)`, _z_ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",3], 3)`, _p_ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",4], 3)`). While as expected, lexical vocalizations are more likely to follow prior lexical vocalizations, and to appear in 18- to 24-month-old children’ speech than 6-12 months (but not 12-18 months), the effect of adult response is significant for all three age groups, regardless of whether prior vocalization is lexical or not (Figure 3).
+As results showed, children were significantly more likely to produce lexical vocalizations when their immediately prior vocalization was responded to contingently by an adult ($\beta$ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",1], 3)`, _SE_ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",2], 3)`, _z_ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",3], 3)`, _p_ = `r round(summary(mod_loop_lex)$coefficients["lastrespyes",4], 3)`). While as expected, lexical vocalizations are more likely to follow prior lexical vocalizations, and to appear in 18- to 24-month-old children’ speech than 6-12 months (but not 12-18 months), the effect of adult response is significant for all three age groups, regardless of whether prior vocalization is lexical or not (Figure \@ref(fig:social-loop-plot)).
 
 [^@]: glmer(lexicality (yes/no; factorial) ~ last_utterance_responded (yes/no; factorial) * agebin (6-12/12-18/18-24; factorial) + last_utterance_lexicality (yes/no; factorial) + (1|child))
 
 [^@]: This effect still came out when age was treated as a continuous variable.
 
 
-```{r adult response model plot, results='hide', message=FALSE, fig.width=10, fig.height = 10, fig.cap = "The estimated probability of children’s non-canonical (red), canonical (green), and lexical (blue) vocalizations that receive adult response at different ages between 2 and 24 months, either out of conversation burst (left facet) or within burst (right facet). Error bars indicate the variability or confidence interval for each point estimate."}
+```{r adult-response-model-plot, results='hide', message=FALSE, fig.width=10, fig.height = 10, fig.cap = "The estimated probability of children’s non-canonical (red), canonical (green), and lexical (blue) vocalizations that receive adult response at different ages between 2 and 24 months, either out of conversation burst (left facet) or within burst (right facet). Error bars indicate the variability or confidence interval for each point estimate."}
 # vocal feature: three level
 newdata <- unique(
   allchi_mod[,c(
@@ -452,11 +449,10 @@ adu_resp_mod_plot <- ggplot(
     plot.tag = element_text(face = "bold"))
 
 adu_resp_mod_plot
-
 ```
 
 
-```{r social loop plot, results='hide', message=FALSE, fig.width=10, fig.height = 10, fig.cap = "The estimated probability of children’s vocalizations that are lexical at 6 to 12 months old, 12 to 18 months old and 18 to 24 months old, given their prior utterance is responded to by an adult (red) or not (light orange), and whether their prior utterance is non-lexical (left facet) or lexical (right facet). Error bars indicate the variability or confidence interval for each point estimate."}
+```{r social-loop-plot, results='hide', message=FALSE, fig.width=10, fig.height = 10, fig.cap = "The estimated probability of children’s vocalizations that are lexical at 6 to 12 months old, 12 to 18 months old and 18 to 24 months old, given their prior utterance is responded to by an adult (red) or not (light orange), and whether their prior utterance is non-lexical (left facet) or lexical (right facet). Error bars indicate the variability or confidence interval for each point estimate."}
 newdata <- unique(
   loopmod_lex[,c(
     "agebin",
@@ -522,7 +518,6 @@ loop_mod_plot <- ggplot(pred.ucount,
         plot.tag = element_text(face = "bold"))
 
 loop_mod_plot
-
 ```
 
 
