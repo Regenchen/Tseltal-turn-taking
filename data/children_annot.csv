@@ -20,8 +20,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 2159rcd,7793chi,254.91,255.48,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,5,yes,NCB,7,1.4
 2159rcd,7793chi,257.1,257.56,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,6,no,NCB,7,1.4
 2159rcd,7793chi,263.15,265.411,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,7,no,NCB,7,1.4
-7604rcd,7793chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3538rcd,7793chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 9407rcd,7793chi,211.562,211.985,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,3,0.6
 9407rcd,7793chi,214.405,214.795,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,3,0.6
 9407rcd,7793chi,293.235,294.935,NA,out of burst,7,"(6,12]",C,NA,NA,CB,CHI,CHI,not-responded,3,no,NCB,3,0.6
@@ -80,15 +78,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 552rcd,7793chi,250.72,251.85,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,14,no,NCB,16,3.2
 552rcd,7793chi,295,295.29,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,15,no,NCB,16,3.2
 552rcd,7793chi,297.864,298.635,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,16,no,NCB,16,3.2
-382rcd,2523chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3050rcd,2523chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6306rcd,2523chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9370rcd,2523chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7568rcd,2523chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6279rcd,2523chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6945rcd,2523chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9960rcd,2523chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1300rcd,2523chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 5434rcd,3470chi,41.5,41.86,NA,out of burst,10,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,54,10.8
 5434rcd,3470chi,42.64,42.97,NA,out of burst,10,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,2,no,NCB,54,10.8
 5434rcd,3470chi,43.765,44.075,NA,out of burst,10,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,3,no,NCB,54,10.8
@@ -143,7 +132,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 5434rcd,3470chi,158.61,158.88,NA,out of burst,10,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,52,no,LEX,54,10.8
 5434rcd,3470chi,176.065,176.425,NA,out of burst,10,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,53,no,NCB,54,10.8
 5434rcd,3470chi,237.135,237.445,NA,out of burst,10,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,54,no,NCB,54,10.8
-5590rcd,3470chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 9851rcd,3470chi,19.005,19.325,NA,out of burst,10,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,37,7.4
 9851rcd,3470chi,26.945,27.995,NA,out of burst,10,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,2,no,NCB,37,7.4
 9851rcd,3470chi,31.34,32.24,NA,out of burst,10,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,3,no,NCB,37,7.4
@@ -855,9 +843,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 9188rcd,8592chi,298.79,299.2,NA,out of burst,9,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,60,no,NCB,61,12.2
 9188rcd,8592chi,299.325,300.001,NA,out of burst,9,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,61,no,NCB,61,12.2
 5885rcd,8592chi,254.47,254.71,NA,out of burst,9,"(6,12]",C,W,1,LEX,CHI,CHI,not-responded,1,unknown,NA,1,0.2
-3955rcd,8592chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2262rcd,8592chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4076rcd,8592chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 5400rcd,8592chi,0.92,1.17,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,27,5.4
 5400rcd,8592chi,1.43,1.68,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,2,no,NCB,27,5.4
 5400rcd,8592chi,2.57,2.75,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,3,no,NCB,27,5.4
@@ -910,30 +895,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 6197rcd,8592chi,294.907,295.167,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,23,no,NCB,25,5
 6197rcd,8592chi,295.917,296.227,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,24,no,NCB,25,5
 6197rcd,8592chi,299.057,299.417,NA,out of burst,9,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,25,no,NCB,25,5
-1437rcd,4414chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3557rcd,4414chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9464rcd,4414chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9169rcd,4414chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2603rcd,4414chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9540rcd,4414chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5661rcd,4414chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1548rcd,4414chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6378rcd,3270chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4182rcd,3270chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3762rcd,3270chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5017rcd,3270chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8292rcd,3270chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9801rcd,3270chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8738rcd,3270chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4391rcd,3270chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4082rcd,3270chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6912rcd,6232chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7707rcd,6232chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9530rcd,6232chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9016rcd,6232chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5908rcd,6232chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1821rcd,6232chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5759rcd,6232chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 9063rcd,6834chi,31.15,31.52,NA,out of burst,11,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,22,4.4
 9063rcd,6834chi,33.975,36.175,NA,out of burst,11,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,2,no,NCB,22,4.4
 9063rcd,6834chi,36.595,37.655,NA,out of burst,11,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,3,no,NCB,22,4.4
@@ -1058,7 +1019,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 6861rcd,6834chi,265.12,265.66,NA,out of burst,11,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,40,no,NCB,42,8.4
 6861rcd,6834chi,265.85,266.37,NA,out of burst,11,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,41,no,NCB,42,8.4
 6861rcd,6834chi,289.13,289.83,NA,out of burst,11,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,42,no,NCB,42,8.4
-9237rcd,6834chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 5188rcd,6834chi,8.5,8.85,NA,out of burst,11,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,5,1
 5188rcd,6834chi,9.04,9.36,NA,out of burst,11,"(6,12]",C,W,1,LEX,CHI,CHI,not-responded,2,no,NCB,5,1
 5188rcd,6834chi,94.69,94.94,1.07,out of burst,11,"(6,12]",C,V,NA,CB,CHI,CHI,responded,3,no,LEX,5,1
@@ -1111,23 +1071,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 6729rcd,6834chi,272.835,273.173,NA,out of burst,11,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,32,no,NCB,34,6.8
 6729rcd,6834chi,277.475,278.1,NA,out of burst,11,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,33,no,NCB,34,6.8
 6729rcd,6834chi,280.615,280.906,NA,out of burst,11,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,34,no,NCB,34,6.8
-4139rcd,6834chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2730rcd,8978chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5764rcd,8978chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2376rcd,8978chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5217rcd,8978chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6387rcd,8978chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5075rcd,8978chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3691rcd,8978chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5675rcd,3732chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4621rcd,3732chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6508rcd,3732chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5446rcd,3732chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5023rcd,3732chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9595rcd,3732chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2676rcd,3732chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7201rcd,3732chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6717rcd,3732chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 7030rcd,1834chi,0.9,2.01,NA,out of burst,19,"(18,24]",C,W,1,LEX,CHI,CHI,not-responded,1,unknown,NA,26,5.2
 7030rcd,1834chi,103.587,104.007,NA,out of burst,19,"(18,24]",C,W,1,LEX,CHI,CHI,not-responded,2,no,LEX,26,5.2
 7030rcd,1834chi,168.817,169.177,NA,out of burst,19,"(18,24]",C,W,1,LEX,CHI,CHI,not-responded,3,no,LEX,26,5.2
@@ -1154,7 +1097,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 7030rcd,1834chi,265.01,265.7,NA,out of burst,19,"(18,24]",C,W,M,LEX,CHI,CHI,not-responded,24,no,CB,26,5.2
 7030rcd,1834chi,266.215,266.705,0.915,out of burst,19,"(18,24]",C,W,1,LEX,CHI,CHI,responded,25,no,LEX,26,5.2
 7030rcd,1834chi,275.68,275.98,NA,within burst,19,"(18,24]",N,V,NA,NCB,CHI,CHI,not-responded,26,yes,LEX,26,5.2
-2961rcd,1834chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 8945rcd,1834chi,12.41,12.73,NA,out of burst,19,"(18,24]",N,V,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,38,7.6
 8945rcd,1834chi,14.4,15.545,NA,out of burst,19,"(18,24]",C,V,NA,CB,CHI,CHI,not-responded,2,no,NCB,38,7.6
 8945rcd,1834chi,20.09,20.595,NA,out of burst,19,"(18,24]",C,W,1,LEX,CHI,CHI,not-responded,3,no,CB,38,7.6
@@ -1193,33 +1135,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 8945rcd,1834chi,243.51,243.89,0.05,within burst,19,"(18,24]",C,W,1,LEX,CHI,CHI,responded,36,yes,LEX,38,7.6
 8945rcd,1834chi,246.21,246.52,NA,out of burst,19,"(18,24]",C,W,1,LEX,CHI,CHI,not-responded,37,yes,LEX,38,7.6
 8945rcd,1834chi,292.335,293.38,NA,out of burst,19,"(18,24]",C,W,1,LEX,CHI,CHI,not-responded,38,no,LEX,38,7.6
-5946rcd,1834chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1541rcd,1834chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1391rcd,1834chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2004rcd,1834chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3538rcd,6292chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6927rcd,6292chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6758rcd,6292chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6087rcd,6292chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2373rcd,6292chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-311rcd,6292chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7322rcd,6292chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6149rcd,1503chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2038rcd,1503chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7743rcd,1503chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-820rcd,1503chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2727rcd,1503chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-238rcd,1503chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8659rcd,1503chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1812rcd,1503chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6176rcd,1503chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1612rcd,7362chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4740rcd,7362chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2266rcd,7362chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2074rcd,7362chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3562rcd,7362chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1298rcd,7362chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1378rcd,7362chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 9691rcd,6762chi,13.81,14.27,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,16,3.2
 9691rcd,6762chi,25.11,25.54,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,16,3.2
 9691rcd,6762chi,26.179,26.76,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,16,3.2
@@ -1237,8 +1152,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 9691rcd,6762chi,293.83,294.22,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,15,no,NCB,16,3.2
 9691rcd,6762chi,297.049,297.491,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,16,no,NCB,16,3.2
 9384rcd,6762chi,156.619,157.83,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,1,0.2
-9619rcd,6762chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7992rcd,6762chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 5052rcd,6762chi,36.091,36.454,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,10,2
 5052rcd,6762chi,40.145,40.447,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,10,2
 5052rcd,6762chi,51.518,52.223,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,10,2
@@ -1345,10 +1258,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 1806rcd,6762chi,228.03,228.58,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,78,no,NCB,80,16
 1806rcd,6762chi,281.392,282.157,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,79,no,NCB,80,16
 1806rcd,6762chi,292.451,293.085,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,80,no,NCB,80,16
-1583rcd,7623chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2275rcd,7623chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4317rcd,7623chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1459rcd,7623chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 2947rcd,1822chi,7.49,8.57,NA,out of burst,22,"(18,24]",C,W,M,LEX,CHI,CHI,not-responded,1,unknown,NA,35,7
 2947rcd,1822chi,37.015,38.61,NA,out of burst,22,"(18,24]",C,W,M,LEX,CHI,CHI,not-responded,2,no,LEX,35,7
 2947rcd,1822chi,73.73,74.52,NA,out of burst,22,"(18,24]",C,V,NA,CB,CHI,CHI,not-responded,3,no,LEX,35,7
@@ -1471,7 +1380,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 7182rcd,1822chi,277.135,277.68,NA,out of burst,22,"(18,24]",C,V,NA,CB,CHI,CHI,not-responded,21,no,CB,23,4.6
 7182rcd,1822chi,277.85,278.43,NA,out of burst,22,"(18,24]",C,V,NA,CB,CHI,CHI,not-responded,22,no,CB,23,4.6
 7182rcd,1822chi,299.375,299.745,NA,out of burst,22,"(18,24]",N,V,NA,NCB,CHI,CHI,not-responded,23,no,CB,23,4.6
-9913rcd,1822chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 1314rcd,1822chi,293.5,293.91,NA,out of burst,22,"(18,24]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,1,0.2
 8698rcd,1822chi,2.89,3.94,NA,out of burst,22,"(18,24]",C,W,M,LEX,CHI,CHI,not-responded,1,unknown,NA,20,4
 8698rcd,1822chi,4.89,5.65,NA,out of burst,22,"(18,24]",C,V,NA,CB,CHI,CHI,not-responded,2,no,LEX,20,4
@@ -1493,11 +1401,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 8698rcd,1822chi,271.025,272.115,NA,out of burst,22,"(18,24]",C,V,NA,CB,CHI,CHI,not-responded,18,no,LEX,20,4
 8698rcd,1822chi,282.03,283.74,NA,out of burst,22,"(18,24]",C,W,1,LEX,CHI,CHI,not-responded,19,no,CB,20,4
 8698rcd,1822chi,291.61,293.91,NA,out of burst,22,"(18,24]",C,W,1,LEX,CHI,CHI,not-responded,20,no,LEX,20,4
-6118rcd,3557chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8063rcd,3557chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4206rcd,3557chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1014rcd,3557chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6521rcd,3557chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 1745rcd,1846chi,6.278,6.669,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,9,1.8
 1745rcd,1846chi,36.67,36.843,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,9,1.8
 1745rcd,1846chi,108.075,108.482,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,9,1.8
@@ -1636,7 +1539,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 4020rcd,1846chi,117.224,117.523,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,45,no,NCB,47,9.4
 4020rcd,1846chi,189.476,189.742,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,46,no,NCB,47,9.4
 4020rcd,1846chi,201.282,201.44,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,47,no,NCB,47,9.4
-1678rcd,1846chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 1450rcd,1846chi,85.33,85.62,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,11,2.2
 1450rcd,1846chi,86.64,86.97,1.5,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,responded,2,no,NCB,11,2.2
 1450rcd,1846chi,91.956,92.97,-0.38,within burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,responded,3,yes,NCB,11,2.2
@@ -1650,7 +1552,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 1450rcd,1846chi,285.596,285.98,NA,within burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,11,yes,NCB,11,2.2
 550rcd,1846chi,208.334,208.643,0.487,within burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,responded,1,unknown,NA,2,0.4
 550rcd,1846chi,210.06,210.403,NA,within burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,yes,NCB,2,0.4
-2558rcd,1846chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 7239rcd,1846chi,148.54,149.27,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,6,1.2
 7239rcd,1846chi,151.935,152.465,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,6,1.2
 7239rcd,1846chi,152.78,153.71,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,6,1.2
@@ -1734,8 +1635,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 6874rcd,5810chi,169.02,169.34,NA,out of burst,22,"(18,24]",C,V,NA,CB,CHI,CHI,not-responded,4,no,NCB,6,1.2
 6874rcd,5810chi,172.77,173.07,NA,out of burst,22,"(18,24]",N,V,NA,NCB,CHI,CHI,not-responded,5,no,CB,6,1.2
 6874rcd,5810chi,190.52,190.84,NA,out of burst,22,"(18,24]",N,V,NA,NCB,CHI,CHI,not-responded,6,no,NCB,6,1.2
-6327rcd,5810chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1740rcd,5810chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 8274rcd,5810chi,14.77,17.95,NA,out of burst,22,"(18,24]",C,W,M,LEX,CHI,CHI,not-responded,1,unknown,NA,41,8.2
 8274rcd,5810chi,20.07,21,NA,out of burst,22,"(18,24]",C,U,NA,CB,CHI,CHI,not-responded,2,no,LEX,41,8.2
 8274rcd,5810chi,36.1,36.92,NA,out of burst,22,"(18,24]",C,U,NA,CB,CHI,CHI,not-responded,3,no,CB,41,8.2
@@ -1777,20 +1676,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 8274rcd,5810chi,289.34,290.17,NA,out of burst,22,"(18,24]",C,U,NA,CB,CHI,CHI,not-responded,39,no,CB,41,8.2
 8274rcd,5810chi,291.8,293.58,NA,out of burst,22,"(18,24]",C,U,NA,CB,CHI,CHI,not-responded,40,no,CB,41,8.2
 8274rcd,5810chi,294.188,295.6,NA,out of burst,22,"(18,24]",C,U,NA,CB,CHI,CHI,not-responded,41,no,CB,41,8.2
-7630rcd,5172chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-747rcd,5172chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2957rcd,5172chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6934rcd,5172chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4313rcd,2711chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3924rcd,2711chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8558rcd,2711chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7664rcd,2711chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2273rcd,2711chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2221rcd,2711chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2841rcd,2711chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6730rcd,2711chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7655rcd,2711chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7569rcd,3969chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 9021rcd,3969chi,213.08,215.87,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,1,0.2
 3158rcd,3969chi,2.89,3.19,1.09,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,responded,1,unknown,NA,35,7
 3158rcd,3969chi,31.01,31.38,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,yes,NCB,35,7
@@ -1855,9 +1740,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 9309rcd,3969chi,294.704,295.106,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,14,no,NCB,15,3
 9309rcd,3969chi,295.607,295.908,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,15,no,NCB,15,3
 2819rcd,3969chi,0.41,0.81,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,1,0.2
-912rcd,3969chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7146rcd,3969chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-421rcd,3969chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 3200rcd,7335chi,0.87,1.11,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,57,11.4
 3200rcd,7335chi,1.96,2.1,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,57,11.4
 3200rcd,7335chi,4.52,4.77,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,57,11.4
@@ -1935,8 +1817,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 1536rcd,7335chi,147.23,147.7,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,18,no,NCB,20,4
 1536rcd,7335chi,149.6,150.32,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,19,no,NCB,20,4
 1536rcd,7335chi,152.88,153.77,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,20,no,NCB,20,4
-7624rcd,7335chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2448rcd,7335chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 4853rcd,7335chi,169.03,169.35,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,6,1.2
 4853rcd,7335chi,173.485,173.885,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,6,1.2
 4853rcd,7335chi,178.45,178.67,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,6,1.2
@@ -2042,8 +1922,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 8974rcd,7335chi,125.355,125.74,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,9,no,NCB,11,2.2
 8974rcd,7335chi,130.89,131.47,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,10,no,NCB,11,2.2
 8974rcd,7335chi,133.87,134.14,NA,out of burst,2,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,11,no,NCB,11,2.2
-4783rcd,944chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7974rcd,944chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 7426rcd,2315chi,48.43,49.38,NA,out of burst,24,"(18,24]",N,0,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,1,0.2
 9171rcd,2315chi,17.07,17.32,NA,within burst,24,"(18,24]",N,V,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,36,7.2
 9171rcd,2315chi,28.785,29.305,NA,out of burst,24,"(18,24]",C,W,1,LEX,CHI,CHI,not-responded,2,no,NCB,36,7.2
@@ -2108,8 +1986,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 5873rcd,2315chi,154.86,155.54,NA,out of burst,24,"(18,24]",N,0,NA,NCB,CHI,CHI,not-responded,4,no,NCB,6,1.2
 5873rcd,2315chi,155.88,156.46,NA,out of burst,24,"(18,24]",N,0,NA,NCB,CHI,CHI,not-responded,5,no,NCB,6,1.2
 5873rcd,2315chi,249.52,249.86,0.115,within burst,24,"(18,24]",C,W,1,LEX,CHI,CHI,responded,6,no,NCB,6,1.2
-4495rcd,2315chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6462rcd,2315chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 458rcd,6079chi,34.02,34.68,NA,out of burst,13,"(12,18]",C,V,NA,CB,CHI,CHI,not-responded,1,unknown,NA,44,8.8
 458rcd,6079chi,35.875,36.095,NA,out of burst,13,"(12,18]",C,W,1,LEX,CHI,CHI,not-responded,2,no,CB,44,8.8
 458rcd,6079chi,37.15,37.44,NA,out of burst,13,"(12,18]",C,W,1,LEX,CHI,CHI,not-responded,3,no,LEX,44,8.8
@@ -2154,9 +2030,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 458rcd,6079chi,283.767,287.507,NA,out of burst,13,"(12,18]",N,NA,NA,NCB,CHI,CHI,not-responded,42,no,NCB,44,8.8
 458rcd,6079chi,289.377,290.527,NA,out of burst,13,"(12,18]",C,0,NA,CB,CHI,CHI,not-responded,43,no,NCB,44,8.8
 458rcd,6079chi,293.212,294.31,NA,out of burst,13,"(12,18]",C,0,NA,CB,CHI,CHI,not-responded,44,no,CB,44,8.8
-2749rcd,6079chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2573rcd,6079chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8313rcd,6079chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 185rcd,6079chi,37.66,37.88,1.41,out of burst,13,"(12,18]",N,NA,NA,NCB,CHI,CHI,responded,1,unknown,NA,23,4.6
 185rcd,6079chi,43.86,43.98,NA,out of burst,13,"(12,18]",N,V,NA,NCB,CHI,CHI,not-responded,2,yes,NCB,23,4.6
 185rcd,6079chi,51.24,51.43,NA,within burst,13,"(12,18]",C,W,1,LEX,CHI,CHI,not-responded,3,no,NCB,23,4.6
@@ -2521,7 +2394,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 7706rcd,9850chi,270.7,272.14,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,68,no,NCB,70,14
 7706rcd,9850chi,281.25,281.79,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,69,no,NCB,70,14
 7706rcd,9850chi,291.47,292.65,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,70,no,NCB,70,14
-2984rcd,9850chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 9802rcd,9850chi,39.49,39.89,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,6,1.2
 9802rcd,9850chi,45.64,45.84,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,6,1.2
 9802rcd,9850chi,204.67,205.15,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,6,1.2
@@ -2532,10 +2404,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 3066rcd,9850chi,52.75,53.1,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,4,0.8
 3066rcd,9850chi,53.76,54.17,0.9,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,responded,3,no,NCB,4,0.8
 3066rcd,9850chi,297.55,298.19,NA,out of burst,7,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,4,yes,NCB,4,0.8
-8422rcd,3822chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-994rcd,3822chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7343rcd,3822chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6804rcd,3822chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 7584rcd,3822chi,0,1.93,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,33,6.6
 7584rcd,3822chi,15.35,15.64,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,33,6.6
 7584rcd,3822chi,17.55,17.83,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,33,6.6
@@ -2581,8 +2449,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 1707rcd,3822chi,191.03,191.19,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,10,no,NCB,12,2.4
 1707rcd,3822chi,191.77,192.09,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,11,no,NCB,12,2.4
 1707rcd,3822chi,202.59,202.8,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,12,no,NCB,12,2.4
-7205rcd,3822chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7399rcd,3822chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 6060rcd,3822chi,1.705,2.766,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,33,6.6
 6060rcd,3822chi,12.593,13.036,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,33,6.6
 6060rcd,3822chi,14.273,14.507,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,33,6.6
@@ -2616,22 +2482,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 6060rcd,3822chi,287.822,288.303,NA,out of burst,6,"(0,6]",C,NA,NA,CB,CHI,CHI,not-responded,31,no,NCB,33,6.6
 6060rcd,3822chi,288.885,290.331,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,32,no,CB,33,6.6
 6060rcd,3822chi,293.5,293.78,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,33,no,NCB,33,6.6
-2415rcd,7861chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4971rcd,7861chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2565rcd,7861chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5774rcd,7861chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6298rcd,7861chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4085rcd,7861chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1638rcd,7861chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5084rcd,2648chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3244rcd,2648chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7047rcd,2648chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4039rcd,2648chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4984rcd,2648chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3437rcd,2648chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7415rcd,2648chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1154rcd,2648chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8204rcd,2648chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 3237rcd,231chi,77.03,77.56,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,1,0.2
 8448rcd,231chi,88.13,89.41,NA,out of burst,9,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,13,2.6
 8448rcd,231chi,89.635,90.565,NA,out of burst,9,"(6,12]",C,0,NA,CB,CHI,CHI,not-responded,2,no,NCB,13,2.6
@@ -2726,7 +2576,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 8848rcd,231chi,4.33,4.88,NA,within burst,9,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,3,yes,NCB,5,1
 8848rcd,231chi,5.2,5.76,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,4,no,NCB,5,1
 8848rcd,231chi,6.53,7.72,NA,within burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,5,no,NCB,5,1
-6952rcd,231chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 9124rcd,231chi,18.05,18.25,NA,out of burst,9,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,49,9.8
 9124rcd,231chi,35.29,35.54,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,2,no,NCB,49,9.8
 9124rcd,231chi,41.85,42.02,NA,out of burst,9,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,49,9.8
@@ -2898,7 +2747,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 2754rcd,231chi,294.96,295.36,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,90,no,CB,92,18.4
 2754rcd,231chi,296.84,297.34,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,91,no,NCB,92,18.4
 2754rcd,231chi,298.03,298.3,NA,out of burst,9,"(6,12]",N,V,NA,NCB,CHI,CHI,not-responded,92,no,NCB,92,18.4
-8004rcd,7391chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 6917rcd,7391chi,44.34,44.9,NA,out of burst,16,"(12,18]",C,W,1,LEX,CHI,CHI,not-responded,1,unknown,NA,16,3.2
 6917rcd,7391chi,56.22,56.41,NA,out of burst,16,"(12,18]",N,V,NA,NCB,CHI,CHI,not-responded,2,no,LEX,16,3.2
 6917rcd,7391chi,80.81,81.08,NA,out of burst,16,"(12,18]",N,V,NA,NCB,CHI,CHI,not-responded,3,no,NCB,16,3.2
@@ -3247,15 +3095,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 1278rcd,7391chi,293.435,293.91,NA,out of burst,16,"(12,18]",N,NA,NA,NCB,CHI,CHI,not-responded,61,no,NCB,63,12.6
 1278rcd,7391chi,296.485,297.655,NA,out of burst,16,"(12,18]",C,W,1,LEX,CHI,CHI,not-responded,62,no,NCB,63,12.6
 1278rcd,7391chi,298.65,298.88,NA,out of burst,16,"(12,18]",N,NA,NA,NCB,CHI,CHI,not-responded,63,no,LEX,63,12.6
-9679rcd,6632chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1291rcd,6632chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4191rcd,6632chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8312rcd,6632chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8335rcd,6632chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2619rcd,6632chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8951rcd,6632chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-720rcd,6632chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3340rcd,6632chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 6279rcd,1686chi,4.24,7.69,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,10,2
 6279rcd,1686chi,15.68,15.93,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,10,2
 6279rcd,1686chi,95.545,95.835,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,10,2
@@ -3266,10 +3105,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 6279rcd,1686chi,215.705,216.18,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,8,no,NCB,10,2
 6279rcd,1686chi,219.76,220.03,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,9,no,NCB,10,2
 6279rcd,1686chi,251.505,251.975,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,10,no,NCB,10,2
-703rcd,1686chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2594rcd,1686chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4297rcd,1686chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2887rcd,1686chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 9596rcd,1686chi,8.96,9.26,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,5,1
 9596rcd,1686chi,74.28,74.44,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,5,1
 9596rcd,1686chi,121.43,121.63,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,5,1
@@ -3320,25 +3155,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 7421rcd,1686chi,275.262,276.034,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,9,no,NCB,11,2.2
 7421rcd,1686chi,276.521,277.33,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,10,no,NCB,11,2.2
 7421rcd,1686chi,284.236,284.852,NA,out of burst,8,"(6,12]",N,NA,NA,NCB,CHI,CHI,not-responded,11,no,NCB,11,2.2
-98rcd,4931chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3476rcd,4931chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3070rcd,4931chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9324rcd,4931chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2320rcd,4931chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8rcd,4931chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4700rcd,4931chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2131rcd,4931chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9508rcd,4931chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1585rcd,1643chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1704rcd,1643chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6218rcd,1643chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8752rcd,1643chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5421rcd,1643chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8rcd,1643chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-766rcd,4458chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3778rcd,4458chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-831rcd,4458chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5464rcd,4458chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 9867rcd,9628chi,12.75,13.95,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,44,8.8
 9867rcd,9628chi,16.705,17.045,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,44,8.8
 9867rcd,9628chi,18.59,19.3,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,44,8.8
@@ -3468,14 +3284,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 6032rcd,9628chi,277.27,285.536,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,27,no,NCB,29,5.8
 6032rcd,9628chi,287.14,293.103,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,28,no,NCB,29,5.8
 6032rcd,9628chi,293.22,299.826,NA,out of burst,5,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,29,no,NCB,29,5.8
-4158rcd,9628chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-650rcd,9083chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3477rcd,9083chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1382rcd,9083chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-2619rcd,9083chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3271rcd,9083chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6583rcd,9083chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1161rcd,9083chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 8859rcd,2469chi,111.43,111.63,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,5,1
 8859rcd,2469chi,142.84,143.04,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,5,1
 8859rcd,2469chi,146.554,146.824,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,5,1
@@ -3504,8 +3312,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 2263rcd,2469chi,296.225,296.501,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,21,no,NCB,23,4.6
 2263rcd,2469chi,296.785,297.226,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,22,no,NCB,23,4.6
 2263rcd,2469chi,299.392,299.651,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,23,no,NCB,23,4.6
-2890rcd,2469chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8938rcd,2469chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 3564rcd,2469chi,44.61,45.94,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,20,4
 3564rcd,2469chi,47.2,47.68,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,20,4
 3564rcd,2469chi,48.969,50.279,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,20,4
@@ -3537,7 +3343,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 5676rcd,2469chi,127.73,127.97,NA,within burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,5,yes,NCB,7,1.4
 5676rcd,2469chi,156.082,156.571,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,6,no,NCB,7,1.4
 5676rcd,2469chi,251.62,252.93,0.51,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,responded,7,no,NCB,7,1.4
-6834rcd,2469chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 1902rcd,2469chi,10.3,10.72,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,9,1.8
 1902rcd,2469chi,14.74,15.2,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,9,1.8
 1902rcd,2469chi,20.36,20.68,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,9,1.8
@@ -3547,8 +3352,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 1902rcd,2469chi,74.07,75.36,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,7,no,NCB,9,1.8
 1902rcd,2469chi,177.99,178.35,NA,within burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,8,no,NCB,9,1.8
 1902rcd,2469chi,183.03,183.4,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,9,no,NCB,9,1.8
-8738rcd,2574chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6247rcd,2574chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 4641rcd,2574chi,35.93,36.402,NA,out of burst,13,"(12,18]",C,W,1,LEX,CHI,CHI,not-responded,1,unknown,NA,12,2.4
 4641rcd,2574chi,47.774,48.18,NA,out of burst,13,"(12,18]",C,W,1,LEX,CHI,CHI,not-responded,2,no,LEX,12,2.4
 4641rcd,2574chi,53.27,53.581,0.145,out of burst,13,"(12,18]",C,W,1,LEX,CHI,CHI,responded,3,no,LEX,12,2.4
@@ -3762,8 +3565,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 9330rcd,3685chi,296.39,296.65,NA,out of burst,17,"(12,18]",N,V,NA,NCB,CHI,CHI,not-responded,10,no,NCB,12,2.4
 9330rcd,3685chi,296.89,297.11,NA,out of burst,17,"(12,18]",N,V,NA,NCB,CHI,CHI,not-responded,11,no,NCB,12,2.4
 9330rcd,3685chi,298.92,300.001,NA,out of burst,17,"(12,18]",N,V,NA,NCB,CHI,CHI,not-responded,12,no,NCB,12,2.4
-6452rcd,3685chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1746rcd,3685chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 1650rcd,3685chi,16.28,16.56,NA,out of burst,17,"(12,18]",C,W,1,LEX,CHI,CHI,not-responded,1,unknown,NA,46,9.2
 1650rcd,3685chi,22.77,23.095,NA,out of burst,17,"(12,18]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,LEX,46,9.2
 1650rcd,3685chi,24.195,24.685,NA,out of burst,17,"(12,18]",C,W,1,LEX,CHI,CHI,not-responded,3,no,NCB,46,9.2
@@ -3823,7 +3624,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 5459rcd,3685chi,236.175,236.845,NA,out of burst,17,"(12,18]",N,V,NA,NCB,CHI,CHI,not-responded,11,no,LEX,13,2.6
 5459rcd,3685chi,239.75,240.02,NA,out of burst,17,"(12,18]",N,NA,NA,NCB,CHI,CHI,not-responded,12,no,NCB,13,2.6
 5459rcd,3685chi,246.135,246.68,NA,out of burst,17,"(12,18]",N,NA,NA,NCB,CHI,CHI,not-responded,13,no,NCB,13,2.6
-9106rcd,3685chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 3662rcd,2471chi,182.86,183.52,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,2,0.4
 3662rcd,2471chi,194.43,195.22,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,2,0.4
 9321rcd,2471chi,34.79,35.75,NA,out of burst,6,"(0,6]",C,NA,NA,CB,CHI,CHI,not-responded,1,unknown,NA,21,4.2
@@ -3847,7 +3647,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 9321rcd,2471chi,187.11,187.89,NA,out of burst,6,"(0,6]",C,NA,NA,CB,CHI,CHI,not-responded,19,no,CB,21,4.2
 9321rcd,2471chi,274.11,274.7,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,20,no,CB,21,4.2
 9321rcd,2471chi,279.51,280.12,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,21,no,NCB,21,4.2
-3920rcd,2471chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 8382rcd,2471chi,0.23,0.76,1.37,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,responded,1,unknown,NA,6,1.2
 8382rcd,2471chi,236.39,236.79,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,yes,NCB,6,1.2
 8382rcd,2471chi,253.74,254.75,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,6,1.2
@@ -3930,23 +3729,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 9991rcd,2471chi,91.91,92.29,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,4,0.8
 9991rcd,2471chi,184.07,184.52,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,4,0.8
 9991rcd,2471chi,186.977,187.272,NA,out of burst,6,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,4,no,NCB,4,0.8
-2860rcd,7333chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1280rcd,7333chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7395rcd,4513chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8182rcd,4513chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-144rcd,409chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-1014rcd,409chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6543rcd,409chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-4537rcd,409chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3690rcd,409chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6522rcd,409chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6176rcd,409chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-8374rcd,409chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5711rcd,409chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6204rcd,6513chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-5298rcd,5000chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-9446rcd,5000chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6806rcd,5000chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 1490rcd,3554chi,86.45,86.67,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,7,1.4
 1490rcd,3554chi,95.41,97.17,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,7,1.4
 1490rcd,3554chi,97.76,99.7,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,7,1.4
@@ -3954,7 +3736,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 1490rcd,3554chi,222.79,223.71,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,5,no,NCB,7,1.4
 1490rcd,3554chi,257.98,258.83,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,6,no,NCB,7,1.4
 1490rcd,3554chi,259.41,260.47,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,7,no,NCB,7,1.4
-9083rcd,3554chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 1685rcd,3554chi,53.032,53.45,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,17,3.4
 1685rcd,3554chi,54.178,56.391,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,17,3.4
 1685rcd,3554chi,57.051,58.602,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,17,3.4
@@ -4004,10 +3785,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 856rcd,3554chi,280.66,281.98,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,30,no,NCB,32,6.4
 856rcd,3554chi,285.23,287.36,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,31,no,NCB,32,6.4
 856rcd,3554chi,292.533,294.07,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,32,no,NCB,32,6.4
-2181rcd,3554chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-6625rcd,3554chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-3451rcd,3554chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-7651rcd,3554chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 8235rcd,3554chi,143.37,143.7,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,11,2.2
 8235rcd,3554chi,146.95,147.26,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,11,2.2
 8235rcd,3554chi,148.34,148.54,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,11,2.2
@@ -4173,7 +3950,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 8232rcd,4967chi,237.1,239.58,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,37,no,NCB,39,7.8
 8232rcd,4967chi,246.77,248.67,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,38,no,NCB,39,7.8
 8232rcd,4967chi,295.18,295.5,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,39,no,NCB,39,7.8
-2679rcd,4967chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 7903rcd,4967chi,0.46,1.02,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,29,5.8
 7903rcd,4967chi,1.12,1.53,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,29,5.8
 7903rcd,4967chi,2.66,3.1,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,29,5.8
@@ -4207,7 +3983,6 @@ source,ptcp,time_start,time_end,gap,burst,age,agebin,vcm,lex,mwu,voc_type,spkr,s
 6362rcd,4967chi,278.69,279.32,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,4,0.8
 6362rcd,4967chi,283.87,284.31,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,4,0.8
 6362rcd,4967chi,287.72,288.01,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,4,no,NCB,4,0.8
-5759rcd,4967chi,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
 5961rcd,4967chi,47.64,48.07,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,1,unknown,NA,9,1.8
 5961rcd,4967chi,50.94,51.82,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,2,no,NCB,9,1.8
 5961rcd,4967chi,52.52,53.95,NA,out of burst,4,"(0,6]",N,NA,NA,NCB,CHI,CHI,not-responded,3,no,NCB,9,1.8
